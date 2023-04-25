@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:letterSpacing="0.25"
             android:text="NT 130"
-            android:textColor="@color/secondary" />
+            android:textColor="@color/secondary1" />
     </LinearLayout>
 
 </LinearLayout>
