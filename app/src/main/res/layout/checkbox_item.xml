@@ -12,6 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:letterSpacing="0.3"
-        android:text="A餐 ( 薯餅+中杯紅茶 ) + $39" />
+        android:text="選項名稱" />
 
 </LinearLayout>
