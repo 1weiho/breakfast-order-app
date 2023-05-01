@@ -42,7 +42,7 @@ public class CartItem extends LinearLayout {
 
   private void init(Context context) {
     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    inflater.inflate(R.layout.product_card, this);
+    inflater.inflate(R.layout.cart_item, this);
 
     cartItemImage = findViewById(R.id.cartItem_image);
     cartItemName = findViewById(R.id.cartItem_name);
@@ -53,4 +53,17 @@ public class CartItem extends LinearLayout {
     cartItemIcon = findViewById(R.id.cartItem_icon);
     cartItemDelete = findViewById(R.id.cartItem_delete);
   }
+
+  public void setCartImage(int resId) {
+    cartItemImage.setImageResource(resId);
+  }
+
+  public void setCartName(String name) {
+    cartItemName.setText(name);
+  }
+
+  public void setCartPrice(String price) {
+    cartItemPrice.setText(price);
+  }
+  
 }
