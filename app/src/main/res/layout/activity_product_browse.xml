@@ -82,38 +82,47 @@
             android:paddingBottom="20dp">
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <com.fcu.breakfast_order_app.ProductCard
+                android:id="@+id/productCard9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
