@@ -6,7 +6,6 @@
     android:layout_height="50dp"
     android:gravity="start"
     android:orientation="vertical"
-    android:background="@drawable/br_large_button"
     tools:context=".LargeButton">
 
     <Button
@@ -14,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/primary"
+        app:cornerRadius="8dp"
         android:letterSpacing="1.2"
         android:text="按鈕名稱"
         android:textColor="@color/white" />
