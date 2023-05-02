@@ -73,7 +73,9 @@
                 android:inputType="phone"
                 android:letterSpacing="0.3"
                 android:paddingVertical="10dp"
-                android:paddingStart="16dp" />
+                android:paddingStart="16dp"
+                android:textColor="@color/dark2"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -92,7 +94,9 @@
                     android:inputType="textPassword"
                     android:letterSpacing="0.3"
                     android:paddingVertical="10dp"
-                    android:paddingStart="16dp" />
+                    android:paddingStart="16dp"
+                    android:textColor="@color/dark2"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
