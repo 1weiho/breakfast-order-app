@@ -8,7 +8,7 @@
     tools:context=".ProductInfo">
 
     <com.fcu.breakfast_order_app.Nav
-        android:id="@+id/text1"
+        android:id="@+id/nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.fcu.breakfast_order_app.ProductPreview
-            android:id="@+id/proPre"
+            android:id="@+id/preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.fcu.breakfast_order_app.Nav>
@@ -28,7 +28,7 @@
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text1">
+        app:layout_constraintTop_toBottomOf="@+id/nav">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -95,8 +95,8 @@
 
             <EditText
                 android:id="@+id/editTextTextMultiLine3"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_width="357dp"
+                android:layout_height="88dp"
                 android:layout_gravity="center"
                 android:background="@drawable/border_radius"
                 android:ems="10"
@@ -112,6 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginVertical="26dp"
+                android:layout_marginRight="26dp"
                 android:background="@drawable/br_product_info"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -145,23 +147,35 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:orientation="horizontal">
+                android:layout_marginRight="26dp"
+                android:layout_marginBottom="60dp"
+                android:background="@drawable/br_product_info"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp">
 
                 <ImageButton
                     android:id="@+id/imageButton3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     app:srcCompat="@drawable/shopping_cart_icon" />
-            </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:letterSpacing="0.3"
+                    android:text="加入購物車"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
