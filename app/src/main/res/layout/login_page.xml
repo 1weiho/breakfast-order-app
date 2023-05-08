@@ -37,7 +37,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="473dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -127,13 +127,12 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="11dp" />
+            android:layout_height="51dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
