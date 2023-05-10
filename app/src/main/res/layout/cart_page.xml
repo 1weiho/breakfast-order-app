@@ -18,7 +18,7 @@
     </com.fcu.breakfast_order_app.Nav>
 
     <com.fcu.breakfast_order_app.Head
-        android:id="@+id/headtitle"
+        android:id="@+id/cart_headTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-40dp"
@@ -27,13 +27,13 @@
         app:layout_constraintTop_toBottomOf="@id/text1"/>
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headtitle">
+        app:layout_constraintTop_toBottomOf="@+id/cart_headTitle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,18 +41,22 @@
             android:orientation="vertical">
 
             <com.fcu.breakfast_order_app.CartItem
+                android:id="@+id/cartItem1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
             <com.fcu.breakfast_order_app.CartItem
+                android:id="@+id/cartItem2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
             <com.fcu.breakfast_order_app.CartItem
+                android:id="@+id/cartItem3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
             <com.fcu.breakfast_order_app.CartItem
+                android:id="@+id/cartItem4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -63,11 +67,12 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/br_product_info"
         android:gravity="center"
-        android:gravity="center"
         android:orientation="horizontal"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2">
@@ -79,18 +84,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/shopping_bag_icon" />
+            app:srcCompat="@drawable/shopping_cart_icon" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:letterSpacing="0.3"
-            android:text="加入購物車"
+            android:letterSpacing="0.5"
+            android:text="結帳"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 
