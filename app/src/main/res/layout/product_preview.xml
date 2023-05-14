@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:src="@drawable/food_img" />
+            android:src="@drawable/food_img1" />
     </LinearLayout>
 
     <LinearLayout
