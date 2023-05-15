@@ -1,12 +1,13 @@
 package com.fcu.breakfast_order_app;
 
+import static java.lang.Integer.parseInt;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.media.Image;
-import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,6 +53,30 @@ public class CartItem extends LinearLayout {
     cartItemPlus = findViewById(R.id.cartItem_plus);
     cartItemIcon = findViewById(R.id.cartItem_icon);
     cartItemDelete = findViewById(R.id.cartItem_delete);
+
+    cartItemPlus.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int count;
+        count = parseInt(cartItemNumber.getText().toString());
+        cartItemNumber.setText(Integer.toString(count+1));
+      }
+    });
+
+    cartItemMinus.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int count;
+        count = parseInt(cartItemNumber.getText().toString());
+        if(count <= 0) {
+          count = 0;
+          cartItemNumber.setText(Integer.toString(count));
+        }else {
+          cartItemNumber.setText(Integer.toString(count-1));
+        }
+      }
+    });
+
   }
 
   public void setCartImage(int resId) {
@@ -65,5 +90,5 @@ public class CartItem extends LinearLayout {
   public void setCartPrice(String price) {
     cartItemPrice.setText(price);
   }
-  
+
 }
