@@ -1,8 +1,13 @@
 package com.fcu.breakfast_order_app;
 
+import static java.lang.Integer.parseInt;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class ProductInfo extends AppCompatActivity {
 
@@ -16,6 +21,9 @@ public class ProductInfo extends AppCompatActivity {
   private CheckboxItem checkboxItem4;
   private CheckboxItem checkboxItem5;
   private CheckboxItem checkboxItem6;
+  private ImageButton product_info_minus;
+  private ImageButton product_info_plus;
+  private TextView product_info_number;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +58,32 @@ public class ProductInfo extends AppCompatActivity {
     checkboxItem5.setCheckboxName("加起司+$15");
     checkboxItem6.setCheckboxName("去菜");
 
+    product_info_number = findViewById(R.id.product_info_number);
+    product_info_minus = findViewById(R.id.product_info_minus);
+    product_info_plus = findViewById(R.id.product_info_plus);
 
+    product_info_plus.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int count;
+        count = parseInt(product_info_number.getText().toString());
+        product_info_number.setText(Integer.toString(count+1));
+      }
+    });
+
+    product_info_minus.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int count;
+        count = parseInt(product_info_number.getText().toString());
+        if(count <= 0) {
+          count = 0;
+          product_info_number.setText(Integer.toString(count));
+        }else {
+          product_info_number.setText(Integer.toString(count-1));
+        }
+      }
+    });
 
 
   }
