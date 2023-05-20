@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.core.content.ContextCompat;
+
 public class ButtonWithIcon extends LinearLayout {
 
   private Button buttonWithIcon;
@@ -28,13 +30,13 @@ public class ButtonWithIcon extends LinearLayout {
 
   private void init(Context context) {
     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    inflater.inflate(R.layout.nav, this);
+    inflater.inflate(R.layout.button_with_icon, this);
 
     buttonWithIcon = findViewById(R.id.optionButton);
   }
 
-  public void setButtonWithIcon(String optionName, Drawable drawable) {
+  public void setButtonWithIcon(String optionName, int drawableResId) {
     buttonWithIcon.setText(optionName);
-    buttonWithIcon.setCompoundDrawables(drawable, null, null, null);
+    buttonWithIcon.setCompoundDrawablesWithIntrinsicBounds(drawableResId, 0, 0, 0);
   }
 }
