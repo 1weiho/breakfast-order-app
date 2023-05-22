@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 
 public class Tab extends RelativeLayout {
     private Button tabButton;
+    private boolean isActivated = false;
 
     public Tab(Context context) {
         super(context);
@@ -33,5 +34,13 @@ public class Tab extends RelativeLayout {
 
     public void setTabButton(String buttonName) {
         tabButton.setText(buttonName);
+    }
+
+    public void setActivated(boolean activated) {
+        isActivated = activated;
+        if (isActivated) {
+            tabButton.setBackgroundTintList(getResources().getColorStateList(R.color.indicator1, null));
+            tabButton.setTextColor(getResources().getColor(R.color.white, null));
+        }
     }
 }
