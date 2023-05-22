@@ -13,6 +13,6 @@
         android:padding="0dp"
         android:text="返回"
         android:textColor="@color/dark2"
-        android:textSize="18sp" />
+        android:textSize="12sp" />
 
 </LinearLayout>
