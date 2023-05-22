@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="Product Image"
-            app:srcCompat="@drawable/food_img" />
+            app:srcCompat="@drawable/food_img1" />
     </LinearLayout>
 
     <LinearLayout

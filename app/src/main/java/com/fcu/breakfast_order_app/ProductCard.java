@@ -44,7 +44,7 @@ public class ProductCard extends LinearLayout {
         productName.setText(name);
     }
 
-    public void setProductPrice(String price) {
-        productPrice.setText(price);
+    public void setProductPrice(int price) {
+        productPrice.setText("NT " + price);
     }
 }
