@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CartPage extends AppCompatActivity {
+public class CartPageActivity extends AppCompatActivity {
 
   private Head cart_headTitle;
   private CartItem cartItem1;
@@ -17,7 +17,7 @@ public class CartPage extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.cart_page);
+    setContentView(R.layout.activity_cart_page);
 
     cart_headTitle = findViewById(R.id.cart_headTitle);
     cartItem1 = findViewById(R.id.cartItem1);
