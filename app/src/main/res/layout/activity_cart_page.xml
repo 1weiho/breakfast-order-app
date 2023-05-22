@@ -38,53 +38,78 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/cart_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cart_back_button">
 
         <LinearLayout
+            android:id="@+id/cart_linearlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.fcu.breakfast_order_app.CartItem
-                android:id="@+id/cartItem1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+<!--            <com.fcu.breakfast_order_app.CartItem-->
+<!--                android:id="@+id/cartItem1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
 
-            <com.fcu.breakfast_order_app.CartItem
-                android:id="@+id/cartItem2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+<!--            <com.fcu.breakfast_order_app.CartItem-->
+<!--                android:id="@+id/cartItem2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
 
-            <com.fcu.breakfast_order_app.CartItem
-                android:id="@+id/cartItem3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+<!--            <com.fcu.breakfast_order_app.CartItem-->
+<!--                android:id="@+id/cartItem3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
 
-            <com.fcu.breakfast_order_app.CartItem
-                android:id="@+id/cartItem4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+<!--            <com.fcu.breakfast_order_app.CartItem-->
+<!--                android:id="@+id/cartItem4"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
+
+<!--            <com.fcu.breakfast_order_app.CartItem-->
+<!--                android:id="@+id/cartItem5"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
+
+<!--            <com.fcu.breakfast_order_app.CartItem-->
+<!--                android:id="@+id/cartItem6"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
 
         </LinearLayout>
 
     </ScrollView>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/cart_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        android:letterSpacing="0.8"
+        android:text="總計:NT 600"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/br_product_info"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="36dp"
         android:paddingVertical="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/imageButton3"

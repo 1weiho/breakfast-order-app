@@ -2,8 +2,6 @@ package com.fcu.breakfast_order_app;
 
 import static java.lang.Integer.parseInt;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,8 +10,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class CartItem extends LinearLayout {
 
@@ -89,6 +85,10 @@ public class CartItem extends LinearLayout {
 
   public void setCartPrice(String price) {
     cartItemPrice.setText(price);
+  }
+
+  public int getCartPrice() {
+    return parseInt(cartItemPrice.getText().toString());
   }
 
 }
