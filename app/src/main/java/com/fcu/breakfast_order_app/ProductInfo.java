@@ -33,7 +33,7 @@ public class ProductInfo extends AppCompatActivity {
     productPreview = findViewById(R.id.preview);
     productPreview.setProductName("紫米時蔬嫩雞飯");
     productPreview.setProductPrice("NT 120");
-    productPreview.setProductImage(R.drawable.food_img);
+    productPreview.setProductImage(R.drawable.food_img1);
 
 
     sectionTitle1 = findViewById(R.id.se1);
