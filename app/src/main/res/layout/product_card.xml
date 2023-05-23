@@ -5,6 +5,7 @@
     android:layout_height="80dp"
     android:layout_marginBottom="14dp"
     android:background="@drawable/border_radius"
+    android:clickable="true"
     android:gravity="center_vertical">
 
     <LinearLayout
@@ -12,6 +13,7 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:gravity="center"
+        android:clickable="false"
         android:orientation="vertical">
 
         <ImageView
@@ -19,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:clickable="false"
             android:contentDescription="Product Image"
             app:srcCompat="@drawable/food_img1" />
     </LinearLayout>
@@ -27,16 +30,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:clickable="false"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/productName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:letterSpacing="0.3"
+            android:clickable="false"
             android:text="商品名稱"
             android:textColor="@color/dark1"
-            android:layout_marginBottom="2dp"
             android:textSize="16sp" />
 
         <TextView
@@ -44,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:letterSpacing="0.25"
+            android:clickable="false"
             android:text="NT 130"
             android:textColor="@color/secondary1" />
     </LinearLayout>
