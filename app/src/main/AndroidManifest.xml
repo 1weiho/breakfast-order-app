@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Breakfastorderapp"
         tools:targetApi="31">
         <activity
+            android:name=".ProductInfoActivity"
+            android:label="Product Info"></activity>
+        <activity
             android:name=".ProductBrowseActivity"
             android:exported="true">
             <intent-filter>
