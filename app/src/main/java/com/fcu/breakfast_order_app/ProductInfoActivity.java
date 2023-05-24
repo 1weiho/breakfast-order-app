@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class ProductInfo extends AppCompatActivity {
+public class ProductInfoActivity extends AppCompatActivity {
 
   private ProductPreview productPreview;
   private SectionTitle sectionTitle1;
@@ -28,7 +28,7 @@ public class ProductInfo extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.product_info);
+    setContentView(R.layout.activity_product_info);
 
     productPreview = findViewById(R.id.preview);
     productPreview.setProductName("紫米時蔬嫩雞飯");
