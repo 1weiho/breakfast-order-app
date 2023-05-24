@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CartItem extends LinearLayout {
-
   private ImageView cartItemImage;
   private TextView cartItemName;
   private TextView cartItemPrice;
@@ -83,12 +82,16 @@ public class CartItem extends LinearLayout {
     cartItemName.setText(name);
   }
 
-  public void setCartPrice(String price) {
-    cartItemPrice.setText(price);
+  public void setCartPrice(int price) {
+    cartItemPrice.setText("NT" + price);
   }
 
   public int getCartPrice() {
-    return parseInt(cartItemPrice.getText().toString());
+    int price;
+    price = parseInt(cartItemPrice.getText().toString().replace("NT",""));
+    int number;
+    number = parseInt(cartItemNumber.getText().toString());
+    return price * number;
   }
 
 }
