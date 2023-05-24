@@ -79,14 +79,11 @@ public class ProductBrowseActivity extends AppCompatActivity {
         productCard.setProductImage(productImage);
 
         productCard.setOnClickListener(view -> {
-//            Intent intent = new Intent(ProductBrowseActivity.this, ProductInfoActivity.class);
-//            TODO: send the product info to ProductInfoActivity
-//            intent.putExtra(ProductInfoActivity.EXTRA_PRODUCT_NAME, productName);
-//            intent.putExtra(ProductInfoActivity.EXTRA_PRODUCT_PRICE, productPrice);
-//            intent.putExtra(ProductInfoActivity.EXTRA_PRODUCT_IMAGE, productImage);
-//            startActivity(intent);
-            Toast toast = Toast.makeText(ProductBrowseActivity.this, productName, Toast.LENGTH_SHORT);
-            toast.show();
+            Intent intent = new Intent(ProductBrowseActivity.this, ProductInfoActivity.class);
+            intent.putExtra(ProductInfoActivity.EXTRA_PRODUCT_NAME, productName);
+            intent.putExtra(ProductInfoActivity.EXTRA_PRODUCT_PRICE, productPrice);
+            intent.putExtra(ProductInfoActivity.EXTRA_PRODUCT_IMAGE, productImage);
+            startActivity(intent);
         });
 
         return productCard;
