@@ -41,6 +41,13 @@ public class Tab extends RelativeLayout {
         if (isActivated) {
             tabButton.setBackgroundTintList(getResources().getColorStateList(R.color.indicator1, null));
             tabButton.setTextColor(getResources().getColor(R.color.white, null));
+        } else {
+            tabButton.setBackgroundTintList(getResources().getColorStateList(R.color.light1, null));
+            tabButton.setTextColor(getResources().getColor(R.color.dark1, null));
         }
+    }
+
+    public void setOnTabClickListener(OnClickListener listener) {
+        tabButton.setOnClickListener(listener);
     }
 }
