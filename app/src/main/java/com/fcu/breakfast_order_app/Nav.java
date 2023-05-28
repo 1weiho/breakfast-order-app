@@ -1,14 +1,15 @@
 package com.fcu.breakfast_order_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class Nav extends RelativeLayout {
+
+    private ImageButton menuButton;
 
     public Nav(Context context) {
         super(context);
@@ -28,6 +29,12 @@ public class Nav extends RelativeLayout {
     private void init(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.nav, this);
+
+        menuButton = findViewById(R.id.menuBtn);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context, LoginPageActivity.class);
+            context.startActivity(intent);
+        });
     }
 
 }

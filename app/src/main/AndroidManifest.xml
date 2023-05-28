@@ -16,6 +16,12 @@
             android:name=".ProductInfoActivity"
             android:label="Product Info"></activity>
         <activity
+            android:name=".LoginPageActivity"
+            android:label="Login"></activity>
+        <activity
+            android:name=".RegisterPageActivity"
+            android:label="Product Browse"></activity>
+        <activity
             android:name=".ProductBrowseActivity"
             android:exported="true">
             <intent-filter>
