@@ -84,7 +84,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextTextPassword"
+                    android:id="@+id/editTextPassword"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="48dp"
@@ -112,7 +112,7 @@
                 android:textColor="@color/dark2" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/submitButton"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
