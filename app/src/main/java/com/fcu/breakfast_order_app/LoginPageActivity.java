@@ -2,7 +2,9 @@ package com.fcu.breakfast_order_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,8 +33,14 @@ public class LoginPageActivity extends AppCompatActivity {
         registerButton.setOnClickListener(v -> {
             databaseHandler = new DatabaseHandler(this);
             databaseHandler.open();
-            if (databaseHandler.login(phone.getText().toString(), password.getText().toString())) {
+            String dbPhone = databaseHandler.login(phone.getText().toString(), password.getText().toString());
+            if (dbPhone != null) {
                 Toast.makeText(this, "登入成功", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("is_logged_in", true);
+                editor.putString("phone", dbPhone);
+                editor.apply();
                 Intent intent = new Intent(LoginPageActivity.this, ProductBrowseActivity.class);
                 startActivity(intent);
             } else {

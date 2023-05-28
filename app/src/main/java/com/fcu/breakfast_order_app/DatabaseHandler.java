@@ -37,12 +37,13 @@ public class DatabaseHandler {
         database.execSQL(USER_TABLE);
     }
 
-    public boolean login(String phone, String password) {
+    public String login(String phone, String password) {
         Cursor cursor = database.rawQuery("SELECT * FROM user WHERE phone=? AND password=?", new String[]{phone, password});
         if (cursor.getCount() > 0) {
-            return true;
+            cursor.moveToFirst();
+            return cursor.getString(1);
         } else {
-            return false;
+            return null;
         }
     }
 

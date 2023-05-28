@@ -2,6 +2,7 @@ package com.fcu.breakfast_order_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageButton;
@@ -32,7 +33,14 @@ public class Nav extends RelativeLayout {
 
         menuButton = findViewById(R.id.menuBtn);
         menuButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, LoginPageActivity.class);
+            SharedPreferences sharedPref = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+            boolean isLoggedIn = sharedPref.getBoolean("is_logged_in", false);
+            Intent intent;
+            if (isLoggedIn) {
+                intent = new Intent(context, MemberInfoActivity.class);
+            } else {
+                intent = new Intent(context, LoginPageActivity.class);
+            }
             context.startActivity(intent);
         });
     }

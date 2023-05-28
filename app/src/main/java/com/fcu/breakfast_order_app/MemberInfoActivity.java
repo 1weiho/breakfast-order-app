@@ -2,6 +2,9 @@ package com.fcu.breakfast_order_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 public class MemberInfoActivity extends AppCompatActivity {
@@ -13,7 +16,7 @@ public class MemberInfoActivity extends AppCompatActivity {
     private ButtonWithIcon historyOrderButton;
     private ButtonWithIcon historyPointButton;
     private ButtonWithIcon resetPasswordButton;
-    private  ButtonWithIcon logoutButton;
+    private ButtonWithIcon logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +47,16 @@ public class MemberInfoActivity extends AppCompatActivity {
         historyPointButton.setButtonWithIcon("點數紀錄", R.drawable.point_btn_icon);
         resetPasswordButton.setButtonWithIcon("變更密碼", R.drawable.password_btn_icon);
         logoutButton.setButtonWithIcon("登出", R.drawable.logout_btn_icon);
+
+        logoutButton.setOnClickListener(v -> {
+            SharedPreferences sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean("is_logged_in", false);
+            editor.remove("phone");
+            editor.apply();
+
+            Intent intent = new Intent(MemberInfoActivity.this, ProductBrowseActivity.class);
+            startActivity(intent);
+        });
     }
 }
