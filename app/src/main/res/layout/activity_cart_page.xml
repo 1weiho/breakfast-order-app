@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/cart_price"
+        app:layout_constraintBottom_toTopOf="@+id/cart_total_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cart_back_button">
@@ -51,51 +51,39 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-<!--            <com.fcu.breakfast_order_app.CartItem-->
-<!--                android:id="@+id/cartItem1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-
-<!--            <com.fcu.breakfast_order_app.CartItem-->
-<!--                android:id="@+id/cartItem2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-
-<!--            <com.fcu.breakfast_order_app.CartItem-->
-<!--                android:id="@+id/cartItem3"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-
-<!--            <com.fcu.breakfast_order_app.CartItem-->
-<!--                android:id="@+id/cartItem4"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-
-<!--            <com.fcu.breakfast_order_app.CartItem-->
-<!--                android:id="@+id/cartItem5"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-
-<!--            <com.fcu.breakfast_order_app.CartItem-->
-<!--                android:id="@+id/cartItem6"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-
         </LinearLayout>
 
     </ScrollView>
 
-    <TextView
-        android:id="@+id/cart_price"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:letterSpacing="0.8"
-        android:text="總計:NT 600"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView">
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:letterSpacing="0.8"
+            android:text="總計:NT"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/cart_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:letterSpacing="0.8"
+            android:text="600"
+            android:textColor="@color/black" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"

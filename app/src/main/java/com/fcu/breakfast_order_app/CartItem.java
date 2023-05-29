@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CartItem extends LinearLayout {
+  private int total = 0;
+  private TextView cart_total_price;
   private ImageView cartItemImage;
   private TextView cartItemName;
   private TextView cartItemPrice;
@@ -20,6 +22,14 @@ public class CartItem extends LinearLayout {
   private ImageButton cartItemPlus;
   private ImageView cartItemIcon;
   private TextView cartItemDelete;
+
+  public int getTotal() {
+    return total;
+  }
+
+  public void setTotal(int total) {
+    this.total = total;
+  }
 
   public CartItem(Context context) {
     super(context);
@@ -49,12 +59,19 @@ public class CartItem extends LinearLayout {
     cartItemIcon = findViewById(R.id.cartItem_icon);
     cartItemDelete = findViewById(R.id.cartItem_delete);
 
+    cart_total_price = findViewById(R.id.cart_total_price);
+
     cartItemPlus.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         int count;
-        count = parseInt(cartItemNumber.getText().toString());
-        cartItemNumber.setText(Integer.toString(count+1));
+        count = Integer.parseInt(cartItemNumber.getText().toString());
+        count ++ ;
+        cartItemNumber.setText(String.valueOf(count));
+
+
+        total = total + getCartPrice();
+        cart_total_price.setText(String.valueOf(total));
       }
     });
 
@@ -62,12 +79,13 @@ public class CartItem extends LinearLayout {
       @Override
       public void onClick(View v) {
         int count;
-        count = parseInt(cartItemNumber.getText().toString());
-        if(count <= 0) {
-          count = 0;
-          cartItemNumber.setText(Integer.toString(count));
-        }else {
-          cartItemNumber.setText(Integer.toString(count-1));
+        count = Integer.parseInt(cartItemNumber.getText().toString());
+        if(count > 0) {
+          count --;
+          cartItemNumber.setText(String.valueOf(count));
+
+          total = total - getCartPrice();
+//         cart_total_price.setText("總計:NT "+total);
         }
       }
     });
@@ -86,7 +104,7 @@ public class CartItem extends LinearLayout {
     cartItemPrice.setText("NT" + price);
   }
 
-  public int getCartPrice() {
+  public Integer getCartPrice() {
     int price;
     price = parseInt(cartItemPrice.getText().toString().replace("NT",""));
     int number;
