@@ -28,10 +28,13 @@ public class MemberInfoActivity extends AppCompatActivity {
         head.setHeadTitle("會員資訊");
 
         // Set user information
+        SharedPreferences sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        String userName = sharedPref.getString("userName", "");
+        String phone = sharedPref.getString("phone", "");
         userInfoCard = findViewById(R.id.userInfo);
-        userInfoCard.setUserName("王小明");
+        userInfoCard.setUserName(userName);
         userInfoCard.setUserProfileImage(R.drawable.profile_image);
-        userInfoCard.setUserPhone("0912345678");
+        userInfoCard.setUserPhone(phone);
         userInfoCard.setPointCount(37);
 
         // Set buttons
@@ -49,7 +52,6 @@ public class MemberInfoActivity extends AppCompatActivity {
         logoutButton.setButtonWithIcon("登出", R.drawable.logout_btn_icon);
 
         logoutButton.setOnClickListener(v -> {
-            SharedPreferences sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putBoolean("is_logged_in", false);
             editor.remove("phone");

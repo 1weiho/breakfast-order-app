@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class RegisterPageActivity extends AppCompatActivity {
 
     private Head head;
+    private EditText userName;
     private EditText phone;
     private EditText password;
     private Button registerButton;
@@ -23,14 +24,14 @@ public class RegisterPageActivity extends AppCompatActivity {
 
         head = findViewById(R.id.headtitle);
         head.setHeadTitle("註冊");
-
+        userName = findViewById(R.id.editTextUserName);
         phone = findViewById(R.id.editTextPhone);
         password = findViewById(R.id.editTextPassword);
         registerButton = findViewById(R.id.submitButton);
         registerButton.setOnClickListener(v -> {
             databaseHandler = new DatabaseHandler(this);
             databaseHandler.open();
-            if (databaseHandler.register(phone.getText().toString(), password.getText().toString())) {
+            if (databaseHandler.register(userName.getText().toString(), phone.getText().toString(), password.getText().toString())) {
                 Toast.makeText(this, "註冊成功", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(RegisterPageActivity.this, LoginPageActivity.class);

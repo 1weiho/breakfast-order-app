@@ -62,6 +62,22 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/editTextUserName"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:ems="10"
+                android:hint="使用者名稱"
+                android:inputType="text"
+                android:letterSpacing="0.3"
+                android:paddingVertical="10dp"
+                android:paddingStart="16dp"
+                android:textColor="@color/dark2"
+                android:textSize="14sp" />
+
+            <EditText
                 android:id="@+id/editTextPhone"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
@@ -87,7 +103,7 @@
                     android:id="@+id/editTextPassword"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/border_radius"
                     android:ems="10"
                     android:hint="密碼"
