@@ -33,7 +33,7 @@ public class LoginPageActivity extends AppCompatActivity {
         registerButton.setOnClickListener(v -> {
             databaseHandler = new DatabaseHandler(this);
             databaseHandler.open();
-            UserInfo userInfo = databaseHandler.login(phone.getText().toString(), password.getText().toString());
+            UserInfoClass userInfo = databaseHandler.login(phone.getText().toString(), password.getText().toString());
             if (userInfo != null) {
                 Toast.makeText(this, "登入成功", Toast.LENGTH_SHORT).show();
                 SharedPreferences sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
@@ -49,10 +49,10 @@ public class LoginPageActivity extends AppCompatActivity {
             }
         });
         navToRegBtn = findViewById(R.id.navToRegBtn);
-        navToRegBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginPageActivity.this, RegisterPageActivity.class);
-            startActivity(intent);
-        });
+            navToRegBtn.setOnClickListener(v -> {
+                Intent intent = new Intent(LoginPageActivity.this, RegisterPageActivity.class);
+                startActivity(intent);
+            });
 
     }
 }

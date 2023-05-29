@@ -28,6 +28,13 @@ public class DatabaseHandler {
             "phone TEXT NOT NULL, " +
             "password TEXT NOT NULL)";
 
+    public static final String CART_TABLE = "CREATE TABLE IF NOT EXISTS cart ( " +
+      "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+      "productName TEXT NOT NULL, " +
+      "price Integer NOT NULL, " +
+      "productImage Integer NOT NULL, " +
+      "count Integer NOT NULL)";
+
     public DatabaseHandler(AppCompatActivity activity) {
         this.activity = activity;
     }
@@ -36,13 +43,14 @@ public class DatabaseHandler {
         database = activity.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
 //        database.execSQL(CREATE_MEAL_TABLE);
         database.execSQL(USER_TABLE);
+        database.execSQL(CART_TABLE);
     }
 
-    public UserInfo login(String phone, String password) {
+    public UserInfoClass login(String phone, String password) {
         Cursor cursor = database.rawQuery("SELECT * FROM user WHERE phone=? AND password=?", new String[]{phone, password});
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
-            return new UserInfo(cursor.getString(1), cursor.getString(2));
+            return new UserInfoClass(cursor.getString(1), cursor.getString(2));
         } else {
             return null;
         }
@@ -59,6 +67,33 @@ public class DatabaseHandler {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public boolean addProductToCart(String productName, Integer price, Integer productImage, Integer count) {
+        ContentValues values = new ContentValues();
+        values.put("productName", productName);
+        values.put("price", price);
+        values.put("productImage", productImage);
+        values.put("count", count);
+        try {
+            database.insert("cart", null, values);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public CartClass[] getCartProduct() {
+        Cursor cursor = database.rawQuery("SELECT * FROM cart", null);
+        CartClass[] cart = new CartClass[cursor.getCount()];
+        cursor.moveToFirst();
+        for (int i = 0; i < cart.length; i++) {
+            if (!cursor.isLast()) {
+                cursor.moveToNext();
+            }
+            cart[i] = new CartClass(cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4));
+        }
+        return cart;
     }
 
     public void addMeal(String name, String description, int price) {

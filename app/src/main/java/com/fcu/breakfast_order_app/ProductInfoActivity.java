@@ -8,13 +8,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProductInfoActivity extends AppCompatActivity {
 
   public static final String EXTRA_PRODUCT_NAME = "extra_product_name";
   public static final String EXTRA_PRODUCT_PRICE = "extra_product_price";
   public static final String EXTRA_PRODUCT_IMAGE = "extra_product_image";
+
+  private DatabaseHandler databaseHandler;
 
   private ProductPreview productPreview;
   private SectionTitle sectionTitle1;
@@ -29,9 +33,13 @@ public class ProductInfoActivity extends AppCompatActivity {
   private ImageButton product_info_minus;
   private ImageButton product_info_plus;
   private TextView product_info_number;
+  private LinearLayout addToCartBtn;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    databaseHandler = new DatabaseHandler(this);
+    databaseHandler.open();
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_product_info);
 
@@ -45,7 +53,6 @@ public class ProductInfoActivity extends AppCompatActivity {
     productPreview.setProductName(productName);
     productPreview.setProductPrice("NT " + productPrice);
     productPreview.setProductImage(productImage);
-
 
     sectionTitle1 = findViewById(R.id.se1);
     sectionTitle2 = findViewById(R.id.se2);
@@ -96,6 +103,15 @@ public class ProductInfoActivity extends AppCompatActivity {
       }
     });
 
+    addToCartBtn = findViewById(R.id.addToCartBtn);
+    addToCartBtn.setOnClickListener(v -> {
+      if (databaseHandler.addProductToCart(productName, productPrice, productImage, parseInt((String) product_info_number.getText()))) {
+        Toast.makeText(ProductInfoActivity.this, "加入購物車成功", Toast.LENGTH_SHORT).show();
+        onBackPressed();
+      } else {
+        Toast.makeText(ProductInfoActivity.this, "加入購物車失敗", Toast.LENGTH_SHORT).show();
+      }
+    });
 
   }
 }

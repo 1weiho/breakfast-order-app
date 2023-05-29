@@ -1,10 +1,10 @@
 package com.fcu.breakfast_order_app;
 
-public class UserInfo {
+public class UserInfoClass {
   private String userName;
   private String phone;
 
-  public UserInfo(String userName, String phone) {
+  public UserInfoClass(String userName, String phone) {
     this.userName = userName;
     this.phone = phone;
   }
