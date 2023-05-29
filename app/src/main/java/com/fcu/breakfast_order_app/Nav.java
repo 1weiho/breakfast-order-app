@@ -7,10 +7,12 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Nav extends RelativeLayout {
 
     private ImageButton menuButton;
+    private TextView cartCount;
 
     public Nav(Context context) {
         super(context);
@@ -43,6 +45,11 @@ public class Nav extends RelativeLayout {
             }
             context.startActivity(intent);
         });
+    }
+
+    public void setCartCount(int count) {
+        cartCount = findViewById(R.id.cartCount);
+        cartCount.setText(String.valueOf(count));
     }
 
 }

@@ -96,6 +96,14 @@ public class DatabaseHandler {
         return cart;
     }
 
+    //FIXME: query wrong data
+    public Integer getCartCount() {
+        Cursor cursor = database.rawQuery("SELECT count(*) FROM cart", null);
+        cursor.moveToFirst();
+        System.out.println(cursor.getInt(0));
+        return cursor.getInt(0);
+    }
+
     public void addMeal(String name, String description, int price) {
         ContentValues values = new ContentValues();
         values.put("name", name);

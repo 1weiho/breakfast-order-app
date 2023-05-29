@@ -33,6 +33,15 @@
             android:background="#00FFFFFF"
             android:contentDescription="Cart"
             android:src="@drawable/shopping_cart_icon" />
+
+        <TextView
+            android:id="@+id/cartCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="0"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
     <RelativeLayout

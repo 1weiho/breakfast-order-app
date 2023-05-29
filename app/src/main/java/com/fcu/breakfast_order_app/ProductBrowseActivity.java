@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 public class ProductBrowseActivity extends AppCompatActivity {
 
+    private DatabaseHandler databaseHandler;
     private Head head;
+    private Nav nav;
     private Tab tab1;
     private Tab tab2;
     private Tab tab3;
@@ -97,6 +99,12 @@ public class ProductBrowseActivity extends AppCompatActivity {
 
         head = findViewById(R.id.headTitle);
         head.setHeadTitle("麥味登");
+
+        nav = findViewById(R.id.nav);
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
 
         tab1 = findViewById(R.id.tab1);
         tab1.setTabButton("特選餐點");
