@@ -24,6 +24,7 @@ public class DatabaseHandler {
 
     public static final String USER_TABLE = "CREATE TABLE IF NOT EXISTS user ( " +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "userName TEXT NOT NULL, " +
             "phone TEXT NOT NULL, " +
             "password TEXT NOT NULL)";
 
@@ -37,18 +38,19 @@ public class DatabaseHandler {
         database.execSQL(USER_TABLE);
     }
 
-    public String login(String phone, String password) {
+    public UserInfo login(String phone, String password) {
         Cursor cursor = database.rawQuery("SELECT * FROM user WHERE phone=? AND password=?", new String[]{phone, password});
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
-            return cursor.getString(1);
+            return new UserInfo(cursor.getString(1), cursor.getString(2));
         } else {
             return null;
         }
     }
 
-    public boolean register(String phone, String password) {
+    public boolean register(String userName, String phone, String password) {
         ContentValues values = new ContentValues();
+        values.put("userName", userName);
         values.put("phone", phone);
         values.put("password", password);
         try {

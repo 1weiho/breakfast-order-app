@@ -33,13 +33,14 @@ public class LoginPageActivity extends AppCompatActivity {
         registerButton.setOnClickListener(v -> {
             databaseHandler = new DatabaseHandler(this);
             databaseHandler.open();
-            String dbPhone = databaseHandler.login(phone.getText().toString(), password.getText().toString());
-            if (dbPhone != null) {
+            UserInfo userInfo = databaseHandler.login(phone.getText().toString(), password.getText().toString());
+            if (userInfo != null) {
                 Toast.makeText(this, "登入成功", Toast.LENGTH_SHORT).show();
                 SharedPreferences sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putBoolean("is_logged_in", true);
-                editor.putString("phone", dbPhone);
+                editor.putString("userName", userInfo.getUserName());
+                editor.putString("phone", userInfo.getPhone());
                 editor.apply();
                 Intent intent = new Intent(LoginPageActivity.this, ProductBrowseActivity.class);
                 startActivity(intent);
