@@ -4,12 +4,17 @@ import static java.lang.Integer.parseInt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class ProductInfo extends AppCompatActivity {
+public class ProductInfoActivity extends AppCompatActivity {
+
+  public static final String EXTRA_PRODUCT_NAME = "extra_product_name";
+  public static final String EXTRA_PRODUCT_PRICE = "extra_product_price";
+  public static final String EXTRA_PRODUCT_IMAGE = "extra_product_image";
 
   private ProductPreview productPreview;
   private SectionTitle sectionTitle1;
@@ -28,12 +33,18 @@ public class ProductInfo extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.product_info);
+    setContentView(R.layout.activity_product_info);
+
+    Intent intent = getIntent();
+
+    String productName = intent.getStringExtra(EXTRA_PRODUCT_NAME);
+    int productPrice = intent.getIntExtra(EXTRA_PRODUCT_PRICE, 0);
+    int productImage = intent.getIntExtra(EXTRA_PRODUCT_IMAGE, 0);
 
     productPreview = findViewById(R.id.preview);
-    productPreview.setProductName("紫米時蔬嫩雞飯");
-    productPreview.setProductPrice("NT 120");
-    productPreview.setProductImage(R.drawable.food_img1);
+    productPreview.setProductName(productName);
+    productPreview.setProductPrice("NT " + productPrice);
+    productPreview.setProductImage(productImage);
 
 
     sectionTitle1 = findViewById(R.id.se1);
@@ -67,7 +78,7 @@ public class ProductInfo extends AppCompatActivity {
       public void onClick(View v) {
         int count;
         count = parseInt(product_info_number.getText().toString());
-        product_info_number.setText(Integer.toString(count+1));
+        product_info_number.setText(Integer.toString(count + 1));
       }
     });
 
@@ -76,11 +87,11 @@ public class ProductInfo extends AppCompatActivity {
       public void onClick(View v) {
         int count;
         count = parseInt(product_info_number.getText().toString());
-        if(count <= 0) {
+        if (count <= 0) {
           count = 0;
           product_info_number.setText(Integer.toString(count));
-        }else {
-          product_info_number.setText(Integer.toString(count-1));
+        } else {
+          product_info_number.setText(Integer.toString(count - 1));
         }
       }
     });

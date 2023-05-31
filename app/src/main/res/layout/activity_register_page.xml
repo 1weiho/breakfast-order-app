@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".RegisterPageActivity">
+
+    <com.fcu.breakfast_order_app.Nav
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.fcu.breakfast_order_app.Nav>
+
+    <com.fcu.breakfast_order_app.Head
+        android:id="@+id/headtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text1"/>
+
+    <LinearLayout
+        android:layout_width="414dp"
+        android:layout_height="568dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headtitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="473dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:letterSpacing="0.3"
+                android:text="👋您好"
+                android:textColor="@color/dark1"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:letterSpacing="0.3"
+                android:text="歡迎加入麥味登會員"
+                android:textColor="@color/dark1"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editTextUserName"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:ems="10"
+                android:hint="使用者名稱"
+                android:inputType="text"
+                android:letterSpacing="0.3"
+                android:paddingVertical="10dp"
+                android:paddingStart="16dp"
+                android:textColor="@color/dark2"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:ems="10"
+                android:hint="手機號碼"
+                android:inputType="phone"
+                android:letterSpacing="0.3"
+                android:paddingVertical="10dp"
+                android:paddingStart="16dp"
+                android:textColor="@color/dark2"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/border_radius"
+                    android:ems="10"
+                    android:hint="密碼"
+                    android:inputType="textPassword"
+                    android:letterSpacing="0.3"
+                    android:paddingVertical="10dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/dark2"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:backgroundTint="@color/background"
+                android:gravity="right"
+                android:letterSpacing="0.3"
+                android:text="忘記密碼"
+                android:textColor="@color/dark2" />
+
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/primary"
+                android:letterSpacing="1"
+                android:text="註冊"
+                android:textSize="22sp"
+                app:cornerRadius="8dp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

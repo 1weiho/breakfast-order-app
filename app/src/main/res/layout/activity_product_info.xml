@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ProductInfo">
+    tools:context=".ProductInfoActivity">
 
     <com.fcu.breakfast_order_app.Nav
         android:id="@+id/nav"
@@ -126,7 +126,8 @@
                 android:background="@drawable/br_product_info"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingHorizontal="8dp">
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="2dp">
 
                 <ImageButton
                     android:id="@+id/product_info_minus"
@@ -163,7 +164,8 @@
                 android:background="@drawable/br_product_info"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingHorizontal="8dp">
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="2dp">
 
                 <ImageButton
                     android:id="@+id/imageButton3"

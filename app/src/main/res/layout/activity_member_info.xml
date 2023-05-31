@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ProductBrowseActivity">
+
+    <com.fcu.breakfast_order_app.Nav
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.fcu.breakfast_order_app.Nav>
+
+    <com.fcu.breakfast_order_app.Head
+        android:id="@+id/headTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav" />
+
+    <com.fcu.breakfast_order_app.UserInfoCard
+        android:id="@+id/userInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headTitle" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/userInfo"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingHorizontal="52dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:letterSpacing="0.4"
+                android:text="訂單"
+                android:textColor="@color/dark2" />
+
+            <com.fcu.breakfast_order_app.ButtonWithIcon
+                android:id="@+id/currentOrderButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.fcu.breakfast_order_app.ButtonWithIcon
+                android:id="@+id/historyOrderButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.fcu.breakfast_order_app.ButtonWithIcon
+                android:id="@+id/historyPointButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:letterSpacing="0.4"
+                android:text="帳戶"
+                android:textColor="@color/dark2" />
+
+            <com.fcu.breakfast_order_app.ButtonWithIcon
+                android:id="@+id/resetPasswordButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.fcu.breakfast_order_app.ButtonWithIcon
+                android:id="@+id/logoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
