@@ -100,23 +100,15 @@ public class CartItem extends LinearLayout {
     cartItemNumber.setText(String.valueOf(number));
   }
 
-//  public Integer getCartPrice() {
-//    int price;
-//    price = parseInt(cartItemPrice.getText().toString().replace("NT",""));
-//    int number;
-//    number = parseInt(cartItemNumber.getText().toString());
-//    return price * number;
-//  }
-
   public void updateTotalPriceForPlus() {
     CartPageActivity CartPageActivity = (CartPageActivity) getContext();
-    CartPageActivity.total += 100;
+    CartPageActivity.total += Integer.parseInt(this.cartItemPrice.getText().toString().replace("NT",""));
     CartPageActivity.cart_total_price.setText("總計:NT "+CartPageActivity.total);
   }
 
   public void updateTotalPriceForMinus() {
     CartPageActivity CartPageActivity = (CartPageActivity) getContext();
-    CartPageActivity.total -= 100;
+    CartPageActivity.total -= Integer.parseInt(this.cartItemPrice.getText().toString().replace("NT",""));
     CartPageActivity.cart_total_price.setText("總計:NT "+CartPageActivity.total);
   }
 

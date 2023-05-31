@@ -87,18 +87,27 @@ public class CartPageActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_cart_page);
 
-    product[0] = new Product("紫米時蔬嫩雞", 12, 2, 1);
-    product[1] = new Product("紫米時蔬嫩雞1", 32, 21,2);
-    product[2] = new Product("紫米時蔬嫩雞2", 34, 65,3);
-
-//    for (int i = 0; i < product.length; i++) {
-//      cart_linearLayout.addView(createCartItem(product[i].productName,product[i].productPrice,product[i].productImage,product[i].productNumber ));
-//    }
-
     cart_linearLayout = findViewById(R.id.cart_linearlayout);
 
-    cart_linearLayout.addView(createCartItem("紫米時蔬嫩雞飯",100,R.drawable.food_img1,12));
-    cart_linearLayout.addView(createCartItem("黑狗套餐",100,R.drawable.food_img1,32));
+    product[0] = new Product("紫米時蔬嫩雞", 10, 10, R.drawable.food_img1);
+    product[1] = new Product("紫米時蔬嫩雞1", 20, 10,R.drawable.food_img1);
+    product[2] = new Product("紫米時蔬嫩雞2", 30, 10,R.drawable.food_img1);
+
+    for (int i = 0; i < product.length; i++) {
+      cart_linearLayout.addView(createCartItem(
+              product[i].productName,
+              product[i].productPrice,
+              product[i].productImage,
+              product[i].productNumber ));
+    }
+
+    for (int i = 0 ; i < product.length ; i++) {
+      total = total + product[i].productPrice * product[i].productNumber;
+    }
+
+
+//    cart_linearLayout.addView(createCartItem("紫米時蔬嫩雞飯",100,R.drawable.food_img1,12));
+//    cart_linearLayout.addView(createCartItem("黑狗套餐",100,R.drawable.food_img1,32));
 //    cart_linearLayout.addView(createCartItem("熱狗香蕉套餐",120,R.drawable.food_img1));
 //    cart_linearLayout.addView(createCartItem("國軍敬禮套餐",100,R.drawable.food_img1));
 //    cart_linearLayout.addView(createCartItem("國軍敬禮套餐",130,R.drawable.food_img1));
@@ -112,6 +121,6 @@ public class CartPageActivity extends AppCompatActivity {
     cart_back_button.setLabel("繼續點餐");
 
     cart_total_price = findViewById(R.id.cart_total_price);
-//    cart_total_price.setText("總計:NT "+total);
+    cart_total_price.setText("總計:NT "+total);
   }
 }
