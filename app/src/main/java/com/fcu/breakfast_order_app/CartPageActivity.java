@@ -105,15 +105,6 @@ public class CartPageActivity extends AppCompatActivity {
       total = total + product[i].productPrice * product[i].productNumber;
     }
 
-
-//    cart_linearLayout.addView(createCartItem("紫米時蔬嫩雞飯",100,R.drawable.food_img1,12));
-//    cart_linearLayout.addView(createCartItem("黑狗套餐",100,R.drawable.food_img1,32));
-//    cart_linearLayout.addView(createCartItem("熱狗香蕉套餐",120,R.drawable.food_img1));
-//    cart_linearLayout.addView(createCartItem("國軍敬禮套餐",100,R.drawable.food_img1));
-//    cart_linearLayout.addView(createCartItem("國軍敬禮套餐",130,R.drawable.food_img1));
-//    cart_linearLayout.addView(createCartItem("國軍敬禮套餐",100,R.drawable.food_img1));
-//    cart_linearLayout.addView(createCartItem("紫米時蔬嫩雞飯",130,R.drawable.food_img1));
-
     cart_headTitle = findViewById(R.id.cart_headTitle);
     cart_headTitle.setHeadTitle("購物車");
 
