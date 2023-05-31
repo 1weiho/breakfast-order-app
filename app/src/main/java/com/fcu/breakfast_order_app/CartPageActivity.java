@@ -10,20 +10,65 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+class Product {
+  public String productName;
+  public int productPrice;
+  public int productNumber;
+  public int productImage;
+
+  public Product(String productName, int productPrice, int productNumber, int productImage) {
+    this.productName = productName;
+    this.productPrice = productPrice;
+    this.productNumber = productNumber;
+    this.productImage = productImage;
+  }
+
+  public String getProductName() {
+    return productName;
+  }
+
+  public void setProductName(String productName) {
+    this.productName = productName;
+  }
+
+  public int getProductPrice() {
+    return productPrice;
+  }
+
+  public void setProductPrice(int productPrice) {
+    this.productPrice = productPrice;
+  }
+
+  public int getProductCount() {
+    return productNumber;
+  }
+
+  public void setProductCount(int productNumber) {
+    this.productNumber = productNumber;
+  }
+
+  public int getProductImage() {
+    return productImage;
+  }
+
+  public void setProductImage(int productImage) {
+    this.productImage = productImage;
+  }
+}
+
 public class CartPageActivity extends AppCompatActivity {
 
-  private int total = 0;
+  Product[] product = new Product[3];
 
-  private LinearLayout cart_linearlayout;
+  public int total = 0;
+
   private Head cart_headTitle;
   private BackButton cart_back_button;
-  private TextView cart_total_price;
+  public TextView cart_total_price;
   private LinearLayout cart_linearLayout;
-  private ImageButton cartItemMinus;
-  private ImageButton cartItemPlus;
-  private TextView cartItemNumber;
 
-  private CartItem createCartItem(String cartName, Integer cartPrice, Integer cartImage) {
+
+  public CartItem createCartItem(String cartName, Integer cartPrice, Integer cartImage, Integer cartNumber) {
     CartItem cartItem = new CartItem(this);
     cartItem.setLayoutParams(new LinearLayout.LayoutParams(
       LinearLayout.LayoutParams.MATCH_PARENT,
@@ -32,29 +77,7 @@ public class CartPageActivity extends AppCompatActivity {
     cartItem.setCartName(cartName);
     cartItem.setCartPrice(cartPrice);
     cartItem.setCartImage(cartImage);
-
-    cartItemMinus = findViewById(R.id.cartItem_minus);
-    cartItemPlus = findViewById(R.id.cartItem_plus);
-    cartItemNumber = findViewById(R.id.cartItem_number);
-//    cart_price = findViewById(R.id.cart_price);
-
-//    cartItemPlus.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        total = total + cartItem.getCartPrice();
-//        cart_price.setText("總計:NT "+total);
-//      }
-//    });
-//
-//    cartItemMinus.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        total = total + cartItem.getCartPrice();
-//        cart_price.setText("總計:NT "+total);
-//      }
-//    });
-
-//    total = total + cartItem.getCartPrice();
+    cartItem.setCartNumber(cartNumber);
 
     return cartItem;
   }
@@ -64,12 +87,18 @@ public class CartPageActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_cart_page);
 
+    product[0] = new Product("紫米時蔬嫩雞", 12, 2, 1);
+    product[1] = new Product("紫米時蔬嫩雞1", 32, 21,2);
+    product[2] = new Product("紫米時蔬嫩雞2", 34, 65,3);
+
+//    for (int i = 0; i < product.length; i++) {
+//      cart_linearLayout.addView(createCartItem(product[i].productName,product[i].productPrice,product[i].productImage,product[i].productNumber ));
+//    }
+
     cart_linearLayout = findViewById(R.id.cart_linearlayout);
 
-    //CartItem cart[] = new CartItem[30];
-
-    cart_linearLayout.addView(createCartItem("紫米時蔬嫩雞飯",100,R.drawable.food_img1));
-    cart_linearLayout.addView(createCartItem("黑狗套餐",100,R.drawable.food_img1));
+    cart_linearLayout.addView(createCartItem("紫米時蔬嫩雞飯",100,R.drawable.food_img1,12));
+    cart_linearLayout.addView(createCartItem("黑狗套餐",100,R.drawable.food_img1,32));
 //    cart_linearLayout.addView(createCartItem("熱狗香蕉套餐",120,R.drawable.food_img1));
 //    cart_linearLayout.addView(createCartItem("國軍敬禮套餐",100,R.drawable.food_img1));
 //    cart_linearLayout.addView(createCartItem("國軍敬禮套餐",130,R.drawable.food_img1));
@@ -82,7 +111,7 @@ public class CartPageActivity extends AppCompatActivity {
     cart_back_button = findViewById(R.id.cart_back_button);
     cart_back_button.setLabel("繼續點餐");
 
-//    cart_total_price = findViewById(R.id.cart_total_price);
+    cart_total_price = findViewById(R.id.cart_total_price);
 //    cart_total_price.setText("總計:NT "+total);
   }
 }

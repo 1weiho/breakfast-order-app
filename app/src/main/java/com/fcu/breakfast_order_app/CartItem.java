@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 public class CartItem extends LinearLayout {
   private int total = 0;
-  private TextView cart_total_price;
   private ImageView cartItemImage;
   private TextView cartItemName;
   private TextView cartItemPrice;
@@ -59,8 +58,6 @@ public class CartItem extends LinearLayout {
     cartItemIcon = findViewById(R.id.cartItem_icon);
     cartItemDelete = findViewById(R.id.cartItem_delete);
 
-    cart_total_price = findViewById(R.id.cart_total_price);
-
     cartItemPlus.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -68,10 +65,7 @@ public class CartItem extends LinearLayout {
         count = Integer.parseInt(cartItemNumber.getText().toString());
         count ++ ;
         cartItemNumber.setText(String.valueOf(count));
-
-
-        total = total + getCartPrice();
-        cart_total_price.setText(String.valueOf(total));
+        updateTotalPriceForPlus();
       }
     });
 
@@ -83,9 +77,7 @@ public class CartItem extends LinearLayout {
         if(count > 0) {
           count --;
           cartItemNumber.setText(String.valueOf(count));
-
-          total = total - getCartPrice();
-//         cart_total_price.setText("總計:NT "+total);
+          updateTotalPriceForMinus();
         }
       }
     });
@@ -104,12 +96,28 @@ public class CartItem extends LinearLayout {
     cartItemPrice.setText("NT" + price);
   }
 
-  public Integer getCartPrice() {
-    int price;
-    price = parseInt(cartItemPrice.getText().toString().replace("NT",""));
-    int number;
-    number = parseInt(cartItemNumber.getText().toString());
-    return price * number;
+  public void setCartNumber(int number) {
+    cartItemNumber.setText(String.valueOf(number));
+  }
+
+//  public Integer getCartPrice() {
+//    int price;
+//    price = parseInt(cartItemPrice.getText().toString().replace("NT",""));
+//    int number;
+//    number = parseInt(cartItemNumber.getText().toString());
+//    return price * number;
+//  }
+
+  public void updateTotalPriceForPlus() {
+    CartPageActivity CartPageActivity = (CartPageActivity) getContext();
+    CartPageActivity.total += 100;
+    CartPageActivity.cart_total_price.setText("總計:NT "+CartPageActivity.total);
+  }
+
+  public void updateTotalPriceForMinus() {
+    CartPageActivity CartPageActivity = (CartPageActivity) getContext();
+    CartPageActivity.total -= 100;
+    CartPageActivity.cart_total_price.setText("總計:NT "+CartPageActivity.total);
   }
 
 }
