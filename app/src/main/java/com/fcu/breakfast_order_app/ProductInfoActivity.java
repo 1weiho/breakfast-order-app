@@ -19,6 +19,7 @@ public class ProductInfoActivity extends AppCompatActivity {
     public static final String EXTRA_PRODUCT_IMAGE = "extra_product_image";
 
     private DatabaseHandler databaseHandler;
+    private BackButton backBtn;
 
     private ProductPreview productPreview;
     private SectionTitle sectionTitle1;
@@ -115,6 +116,9 @@ public class ProductInfoActivity extends AppCompatActivity {
                 Toast.makeText(ProductInfoActivity.this, "加入購物車失敗", Toast.LENGTH_SHORT).show();
             }
         });
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(v -> onBackPressed());
 
     }
 

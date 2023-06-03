@@ -83,6 +83,10 @@ public class CartPageActivity extends AppCompatActivity {
 
         cart_total_price = findViewById(R.id.cart_total_price);
         cart_total_price.setText("總計:NT " + total);
+
+        cart_back_button.setOnClickListener(v -> {
+            onBackPressed();
+        });
     }
 
     private void fetchCartCount() {
