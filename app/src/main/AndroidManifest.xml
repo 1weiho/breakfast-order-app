@@ -13,20 +13,23 @@
         android:theme="@style/Theme.Breakfastorderapp"
         tools:targetApi="31">
         <activity
+            android:name=".OrderHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProductInfoActivity"
-            android:label="Product Info"></activity>
+            android:label="Product Info" />
         <activity
             android:name=".LoginPageActivity"
-            android:label="Login"></activity>
+            android:label="Login" />
         <activity
             android:name=".RegisterPageActivity"
-            android:label="Product Browse"></activity>
+            android:label="Product Browse" />
         <activity
             android:name=".MemberInfoActivity"
-            android:label="Member Info"></activity>
+            android:label="Member Info" />
         <activity
             android:name=".CartPageActivity"
-            android:label="Cart Page"></activity>
+            android:label="Cart Page" />
         <activity
             android:name=".ProductBrowseActivity"
             android:exported="true">

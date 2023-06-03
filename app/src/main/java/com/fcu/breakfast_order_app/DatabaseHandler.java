@@ -18,12 +18,6 @@ public class DatabaseHandler {
 
     private static final String DATABASE_NAME = "breakfast.db";
 
-    private static final String CREATE_MEAL_TABLE = "CREATE TABLE IF NOT EXISTS Meals ( " +
-            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "name TEXT NOT NULL, " +
-            "description TEXT, " +
-            "price Integer NOT NULL)";
-
     public static final String USER_TABLE = "CREATE TABLE IF NOT EXISTS user ( " +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "userName TEXT NOT NULL, " +
@@ -37,15 +31,23 @@ public class DatabaseHandler {
             "productImage Integer NOT NULL, " +
             "count Integer NOT NULL)";
 
+    public static final String ORDER_TABLE = "CREATE TABLE IF NOT EXISTS `order` ( " +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "orderNumber Integer NOT NULL, " +
+            "productName TEXT NOT NULL, " +
+            "price Integer NOT NULL, " +
+            "productImage Integer NOT NULL, " +
+            "count Integer NOT NULL)";
+
     public DatabaseHandler(AppCompatActivity activity) {
         this.activity = activity;
     }
 
     public void open() {
         database = activity.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
-//        database.execSQL(CREATE_MEAL_TABLE);
         database.execSQL(USER_TABLE);
         database.execSQL(CART_TABLE);
+        database.execSQL(ORDER_TABLE);
     }
 
     public UserInfoClass login(String phone, String password) {
@@ -85,8 +87,83 @@ public class DatabaseHandler {
         }
     }
 
+    public int getLatestOrderNumber() {
+        Cursor cursor = database.rawQuery("SELECT * FROM `order` ORDER BY orderNumber DESC LIMIT 1", null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            return cursor.getInt(1);
+        } else {
+            return 0;
+        }
+    }
+
+    public void moveAllCartToOrder() {
+        Cursor cursor = database.rawQuery("SELECT * FROM cart", null);
+        if (cursor.moveToFirst()) {
+            do {
+                ContentValues values = new ContentValues();
+                // check the latest order number and add 1
+                values.put("orderNumber", getLatestOrderNumber() + 1);
+                values.put("productName", cursor.getString(1));
+                values.put("price", cursor.getInt(2));
+                values.put("productImage", cursor.getInt(3));
+                values.put("count", cursor.getInt(4));
+                database.insert("order", null, values);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        removeAllProductFromCart();
+    }
+
+    public OrderClass[] getAnOrder(int orderNumber) {
+        Cursor cursor = database.rawQuery("SELECT * FROM `order` WHERE orderNumber=?", new String[]{String.valueOf(orderNumber)});
+        OrderClass[] orderList = new OrderClass[cursor.getCount()];
+        int i = 0;
+        if (cursor.moveToFirst()) {
+            do {
+                OrderClass orderItem = new OrderClass(
+                        cursor.getInt(1),
+                        cursor.getString(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4),
+                        cursor.getInt(5)
+                );
+                orderList[i] = orderItem;
+                i++;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return orderList;
+    }
+
+
+
+    // get all order number and it's total price
+    public OrderNumberClass[] getOrderNumber() {
+        Cursor cursor = database.rawQuery("SELECT orderNumber, SUM(count), SUM(price * count) AS totalPrice FROM `order` GROUP BY orderNumber", null);
+        OrderNumberClass[] orderNumberList = new OrderNumberClass[cursor.getCount()];
+        int i = 0;
+        if (cursor.moveToFirst()) {
+            do {
+                OrderNumberClass orderNumberItem = new OrderNumberClass(
+                        cursor.getInt(0),
+                        cursor.getInt(1),
+                        cursor.getInt(2)
+                );
+                orderNumberList[i] = orderNumberItem;
+                i++;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return orderNumberList;
+    }
+
     public void removeProductFromCart(String productName) {
         database.delete("cart", "productName=?", new String[]{productName});
+    }
+
+    public void removeAllProductFromCart() {
+        database.delete("cart", null, null);
     }
 
     public void updateProductCount(String productName, int countChange) {
