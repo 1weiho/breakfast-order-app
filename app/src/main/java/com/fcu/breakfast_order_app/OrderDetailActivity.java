@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_ORDER_NUMBER = "extra_order_number";
     private DatabaseHandler databaseHandler;
     private LinearLayout productList;
+    private TextView totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,9 @@ public class OrderDetailActivity extends AppCompatActivity {
         for (int i = 0; i < orderDetailItems.length; i++) {
             productList.addView(createOrderDetailCard(orderDetailItems[i].getProductName(), orderDetailItems[i].getPrice(), orderDetailItems[i].getCount()));
         }
+
+        totalPrice = findViewById(R.id.totalPrice);
+        totalPrice.setText("總計：NT" + databaseHandler.getOrderTotalPrice(orderNumber) + "，可獲得" + databaseHandler.getOrderTotalPrice(orderNumber) / 10 + "點");
     }
 
     private OrderDetailCard createOrderDetailCard(String productName, int productPrice, int productCount) {

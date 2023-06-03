@@ -137,6 +137,16 @@ public class DatabaseHandler {
         return orderList;
     }
 
+    public int getOrderTotalPrice(int orderNumber) {
+        Cursor cursor = database.rawQuery("SELECT SUM(price * count) AS totalPrice FROM orderRecord WHERE orderNumber=?", new String[]{String.valueOf(orderNumber)});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            return cursor.getInt(0);
+        } else {
+            return 0;
+        }
+    }
+
 
     // get all order number and it's total price
     public OrderNumberClass[] getOrderNumber() {
