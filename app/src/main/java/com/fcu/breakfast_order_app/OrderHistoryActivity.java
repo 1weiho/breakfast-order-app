@@ -2,6 +2,7 @@ package com.fcu.breakfast_order_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -42,6 +43,11 @@ public class OrderHistoryActivity extends AppCompatActivity {
         orderItem.setOrderNumber(number);
         orderItem.setOrderDesc(count, price);
         orderItem.setOrderPoint(price / 10);
+        orderItem.setOnClickListener(v -> {
+            Intent intent = new Intent(this, OrderDetailActivity.class);
+            intent.putExtra(OrderDetailActivity.EXTRA_ORDER_NUMBER, number);
+            startActivity(intent);
+        });
 
         return orderItem;
     }
