@@ -133,6 +133,7 @@
                 android:layout_weight="1" />
 
             <LinearLayout
+                android:id="@+id/delectProductBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="24dp"
@@ -141,10 +142,12 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:clickable="false"
                     android:layout_height="match_parent">
 
                     <ImageView
                         android:id="@+id/cartItem_icon"
+                        android:clickable="false"
                         android:layout_width="16dp"
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
@@ -153,6 +156,7 @@
 
                     <TextView
                         android:id="@+id/cartItem_delete"
+                        android:clickable="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
