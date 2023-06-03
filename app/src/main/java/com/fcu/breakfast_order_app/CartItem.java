@@ -113,19 +113,21 @@ public class CartItem extends LinearLayout {
         CartPageActivity CartPageActivity = (CartPageActivity) getContext();
         CartPageActivity.total += Integer.parseInt(this.cartItemPrice.getText().toString().replace("NT", ""));
         CartPageActivity.cart_total_price.setText("總計:NT " + CartPageActivity.total);
+        CartPageActivity.updateCartItemNumber(this.cartItemName.getText().toString(), 1);
     }
 
     public void updateTotalPriceForMinus() {
         CartPageActivity CartPageActivity = (CartPageActivity) getContext();
         CartPageActivity.total -= Integer.parseInt(this.cartItemPrice.getText().toString().replace("NT", ""));
         CartPageActivity.cart_total_price.setText("總計:NT " + CartPageActivity.total);
+        CartPageActivity.updateCartItemNumber(this.cartItemName.getText().toString(), -1);
     }
 
     public void deleteProduct() {
         CartPageActivity CartPageActivity = (CartPageActivity) getContext();
         CartPageActivity.total -= Integer.parseInt(this.cartItemPrice.getText().toString().replace("NT", "")) * Integer.parseInt(this.cartItemNumber.getText().toString());
         CartPageActivity.cart_total_price.setText("總計:NT " + CartPageActivity.total);
-        CartPageActivity.removeCartItem(this);
+        CartPageActivity.removeCartItem(this, this.cartItemName.getText().toString());
     }
 
 }

@@ -40,8 +40,16 @@ public class CartPageActivity extends AppCompatActivity {
         return cartItem;
     }
 
-    public void removeCartItem(View view) {
+    public void removeCartItem(View view, String productName) {
+
         cart_linearLayout.removeView(view);
+        databaseHandler.removeProductFromCart(productName);
+        fetchCartCount();
+    }
+
+    public void updateCartItemNumber(String productName, Integer count) {
+        databaseHandler.updateProductCount(productName, count);
+        fetchCartCount();
     }
 
     @Override

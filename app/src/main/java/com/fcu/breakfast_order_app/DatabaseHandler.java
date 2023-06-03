@@ -85,6 +85,21 @@ public class DatabaseHandler {
         }
     }
 
+    public void removeProductFromCart(String productName) {
+        database.delete("cart", "productName=?", new String[]{productName});
+    }
+
+    public void updateProductCount(String productName, int countChange) {
+        Cursor cursor = database.rawQuery("SELECT * FROM cart WHERE productName=?", new String[]{productName});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int count = cursor.getInt(4);
+            ContentValues values = new ContentValues();
+            values.put("count", count + countChange);
+            database.update("cart", values, "productName=?", new String[]{productName});
+        }
+    }
+
     public ArrayList<CartClass> getCartProduct() {
         Cursor cursor = database.rawQuery("SELECT * FROM cart", null);
         ArrayList<CartClass> cartList = new ArrayList<>();
@@ -106,7 +121,6 @@ public class DatabaseHandler {
     }
 
 
-    //FIXME: query wrong data
     public int getCartCount() {
         Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM cart", null);
         int count = 0;
@@ -117,25 +131,6 @@ public class DatabaseHandler {
 
         cursor.close();
         return count;
-    }
-
-    public void addMeal(String name, String description, int price) {
-        ContentValues values = new ContentValues();
-        values.put("name", name);
-        values.put("description", description);
-        values.put("price", price);
-        database.insert("Meals", null, values);
-    }
-
-    public void deleteMeal(int id) {
-        database.delete("Meals", "_id=?", new String[]{String.valueOf(id)});
-    }
-
-    public Cursor getAllMeals() {
-        Cursor cursor = database.rawQuery("SELECT * FROM Meals", null);
-        Toast.makeText(activity, cursor.getCount() + " is added", Toast.LENGTH_SHORT).show();
-
-        return cursor;
     }
 
 }
