@@ -21,7 +21,12 @@
         <activity
             android:name=".RegisterPageActivity"
             android:label="Product Browse"></activity>
-        <activity android:name=".MemberInfoActivity" android:label="Member Info"></activity>
+        <activity
+            android:name=".MemberInfoActivity"
+            android:label="Member Info"></activity>
+        <activity
+            android:name=".CartPageActivity"
+            android:label="Cart Page"></activity>
         <activity
             android:name=".ProductBrowseActivity"
             android:exported="true">

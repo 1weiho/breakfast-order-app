@@ -13,6 +13,7 @@ public class Nav extends RelativeLayout {
 
     private ImageButton menuButton;
     private TextView cartCount;
+    private ImageButton cartBtn;
 
     public Nav(Context context) {
         super(context);
@@ -34,12 +35,26 @@ public class Nav extends RelativeLayout {
         inflater.inflate(R.layout.nav, this);
 
         menuButton = findViewById(R.id.menuBtn);
+        cartBtn = findViewById(R.id.cartBtn);
+
         menuButton.setOnClickListener(v -> {
             SharedPreferences sharedPref = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
             boolean isLoggedIn = sharedPref.getBoolean("is_logged_in", false);
             Intent intent;
             if (isLoggedIn) {
                 intent = new Intent(context, MemberInfoActivity.class);
+            } else {
+                intent = new Intent(context, LoginPageActivity.class);
+            }
+            context.startActivity(intent);
+        });
+
+        cartBtn.setOnClickListener(v -> {
+            SharedPreferences sharedPref = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+            boolean isLoggedIn = sharedPref.getBoolean("is_logged_in", false);
+            Intent intent;
+            if (isLoggedIn) {
+                intent = new Intent(context, CartPageActivity.class);
             } else {
                 intent = new Intent(context, LoginPageActivity.class);
             }

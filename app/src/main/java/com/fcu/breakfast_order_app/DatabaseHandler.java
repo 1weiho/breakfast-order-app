@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class DatabaseHandler {
 
     private AppCompatActivity activity;
@@ -29,11 +31,11 @@ public class DatabaseHandler {
             "password TEXT NOT NULL)";
 
     public static final String CART_TABLE = "CREATE TABLE IF NOT EXISTS cart ( " +
-      "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-      "productName TEXT NOT NULL, " +
-      "price Integer NOT NULL, " +
-      "productImage Integer NOT NULL, " +
-      "count Integer NOT NULL)";
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "productName TEXT NOT NULL, " +
+            "price Integer NOT NULL, " +
+            "productImage Integer NOT NULL, " +
+            "count Integer NOT NULL)";
 
     public DatabaseHandler(AppCompatActivity activity) {
         this.activity = activity;
@@ -83,18 +85,26 @@ public class DatabaseHandler {
         }
     }
 
-    public CartClass[] getCartProduct() {
+    public ArrayList<CartClass> getCartProduct() {
         Cursor cursor = database.rawQuery("SELECT * FROM cart", null);
-        CartClass[] cart = new CartClass[cursor.getCount()];
-        cursor.moveToFirst();
-        for (int i = 0; i < cart.length; i++) {
-            if (!cursor.isLast()) {
-                cursor.moveToNext();
-            }
-            cart[i] = new CartClass(cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4));
+        ArrayList<CartClass> cartList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                CartClass cartItem = new CartClass(
+                        cursor.getString(1),
+                        cursor.getInt(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4)
+                );
+                cartList.add(cartItem);
+            } while (cursor.moveToNext());
         }
-        return cart;
+
+        cursor.close();
+        return cartList;
     }
+
 
     //FIXME: query wrong data
     public Integer getCartCount() {
