@@ -82,6 +82,10 @@ public class CartPageActivity extends AppCompatActivity {
     return cartItem;
   }
 
+  public void removeCartItem(View view) {
+    cart_linearLayout.removeView(view);
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

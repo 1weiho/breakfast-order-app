@@ -21,6 +21,7 @@ public class CartItem extends LinearLayout {
   private ImageButton cartItemPlus;
   private ImageView cartItemIcon;
   private TextView cartItemDelete;
+  private LinearLayout delectProductBtn;
 
   public int getTotal() {
     return total;
@@ -57,6 +58,7 @@ public class CartItem extends LinearLayout {
     cartItemPlus = findViewById(R.id.cartItem_plus);
     cartItemIcon = findViewById(R.id.cartItem_icon);
     cartItemDelete = findViewById(R.id.cartItem_delete);
+    delectProductBtn = findViewById(R.id.delectProductBtn);
 
     cartItemPlus.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -79,6 +81,13 @@ public class CartItem extends LinearLayout {
           cartItemNumber.setText(String.valueOf(count));
           updateTotalPriceForMinus();
         }
+      }
+    });
+
+    delectProductBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        deleteProduct();
       }
     });
 
@@ -110,6 +119,13 @@ public class CartItem extends LinearLayout {
     CartPageActivity CartPageActivity = (CartPageActivity) getContext();
     CartPageActivity.total -= Integer.parseInt(this.cartItemPrice.getText().toString().replace("NT",""));
     CartPageActivity.cart_total_price.setText("總計:NT "+CartPageActivity.total);
+  }
+
+  public void deleteProduct() {
+    CartPageActivity CartPageActivity = (CartPageActivity) getContext();
+    CartPageActivity.total -= Integer.parseInt(this.cartItemPrice.getText().toString().replace("NT","")) * Integer.parseInt(this.cartItemNumber.getText().toString());
+    CartPageActivity.cart_total_price.setText("總計:NT "+CartPageActivity.total);
+    CartPageActivity.removeCartItem(this);
   }
 
 }
