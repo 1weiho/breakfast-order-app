@@ -88,7 +88,7 @@ public class DatabaseHandler {
     }
 
     public int getLatestOrderNumber() {
-        Cursor cursor = database.rawQuery("SELECT * FROM `order` ORDER BY orderNumber DESC LIMIT 1", null);
+        Cursor cursor = database.rawQuery("SELECT * FROM orderRecord ORDER BY orderNumber DESC LIMIT 1", null);
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             return cursor.getInt(1);
@@ -100,10 +100,11 @@ public class DatabaseHandler {
     public void moveAllCartToOrder() {
         Cursor cursor = database.rawQuery("SELECT * FROM cart", null);
         if (cursor.moveToFirst()) {
+            int orderNumber = getLatestOrderNumber() + 1;
             do {
                 ContentValues values = new ContentValues();
                 // check the latest order number and add 1
-                values.put("orderNumber", getLatestOrderNumber() + 1);
+                values.put("orderNumber", orderNumber);
                 values.put("productName", cursor.getString(1));
                 values.put("price", cursor.getInt(2));
                 values.put("productImage", cursor.getInt(3));
@@ -135,7 +136,6 @@ public class DatabaseHandler {
         cursor.close();
         return orderList;
     }
-
 
 
     // get all order number and it's total price
