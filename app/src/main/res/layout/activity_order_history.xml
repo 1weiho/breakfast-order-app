@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="26dp"></LinearLayout>
+            android:padding="32dp"></LinearLayout>
     </ScrollView>
 
 

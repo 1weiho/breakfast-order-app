@@ -20,7 +20,7 @@
         android:letterSpacing="0.3"
         android:text="訂單 #1"
         android:textColor="@color/black"
-        android:textSize="22dp" />
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/orderDesc"
