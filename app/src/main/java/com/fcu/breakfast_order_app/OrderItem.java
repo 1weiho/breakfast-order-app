@@ -38,7 +38,7 @@ public class OrderItem extends LinearLayout {
     }
 
     public void setOrderNumber(int orderNumber) {
-        this.orderNumber.setText(orderNumber);
+        this.orderNumber.setText("訂單編號 #" + orderNumber);
     }
 
     public void setOrderDesc(int count, int price) {
