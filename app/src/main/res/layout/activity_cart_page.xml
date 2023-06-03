@@ -8,7 +8,7 @@
     tools:context=".CartPageActivity">
 
     <com.fcu.breakfast_order_app.Nav
-        android:id="@+id/text1"
+        android:id="@+id/nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         android:layout_marginTop="-40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text1"/>
+        app:layout_constraintTop_toBottomOf="@id/nav" />
 
     <com.fcu.breakfast_order_app.BackButton
         android:id="@+id/cart_back_button"

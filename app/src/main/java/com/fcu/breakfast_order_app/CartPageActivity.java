@@ -22,6 +22,7 @@ public class CartPageActivity extends AppCompatActivity {
     private BackButton cart_back_button;
     public TextView cart_total_price;
     private LinearLayout cart_linearLayout;
+    private Nav nav;
     private DatabaseHandler databaseHandler;
 
 
@@ -51,6 +52,7 @@ public class CartPageActivity extends AppCompatActivity {
         databaseHandler.open();
 
         cart_linearLayout = findViewById(R.id.cart_linearlayout);
+        nav = findViewById(R.id.nav);
 
         cartList = databaseHandler.getCartProduct();
 
@@ -73,5 +75,19 @@ public class CartPageActivity extends AppCompatActivity {
 
         cart_total_price = findViewById(R.id.cart_total_price);
         cart_total_price.setText("總計:NT " + total);
+    }
+
+    private void fetchCartCount() {
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCartCount();
     }
 }

@@ -34,6 +34,7 @@ public class ProductInfoActivity extends AppCompatActivity {
   private ImageButton product_info_plus;
   private TextView product_info_number;
   private LinearLayout addToCartBtn;
+  private Nav nav;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class ProductInfoActivity extends AppCompatActivity {
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_product_info);
+
+    nav = findViewById(R.id.nav);
 
     Intent intent = getIntent();
 
@@ -114,4 +117,18 @@ public class ProductInfoActivity extends AppCompatActivity {
     });
 
   }
+
+    private void fetchCartCount() {
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCartCount();
+    }
 }

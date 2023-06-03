@@ -101,10 +101,6 @@ public class ProductBrowseActivity extends AppCompatActivity {
         head.setHeadTitle("麥味登");
 
         nav = findViewById(R.id.nav);
-        databaseHandler = new DatabaseHandler(this);
-        databaseHandler.open();
-        int productCount = databaseHandler.getCartCount();
-        nav.setCartCount(productCount);
 
         tab1 = findViewById(R.id.tab1);
         tab1.setTabButton("特選餐點");
@@ -155,5 +151,19 @@ public class ProductBrowseActivity extends AppCompatActivity {
             tab4.setActivated(true);
             showItemsForTab(4);
         });
+    }
+
+    private void fetchCartCount() {
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCartCount();
     }
 }
