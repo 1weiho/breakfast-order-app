@@ -31,7 +31,7 @@ public class DatabaseHandler {
             "productImage Integer NOT NULL, " +
             "count Integer NOT NULL)";
 
-    public static final String ORDER_TABLE = "CREATE TABLE IF NOT EXISTS `order` ( " +
+    public static final String ORDER_TABLE = "CREATE TABLE IF NOT EXISTS orderRecord ( " +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "orderNumber Integer NOT NULL, " +
             "productName TEXT NOT NULL, " +
@@ -108,7 +108,7 @@ public class DatabaseHandler {
                 values.put("price", cursor.getInt(2));
                 values.put("productImage", cursor.getInt(3));
                 values.put("count", cursor.getInt(4));
-                database.insert("order", null, values);
+                database.insert("orderRecord", null, values);
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -116,7 +116,7 @@ public class DatabaseHandler {
     }
 
     public OrderClass[] getAnOrder(int orderNumber) {
-        Cursor cursor = database.rawQuery("SELECT * FROM `order` WHERE orderNumber=?", new String[]{String.valueOf(orderNumber)});
+        Cursor cursor = database.rawQuery("SELECT * FROM orderRecord WHERE orderNumber=?", new String[]{String.valueOf(orderNumber)});
         OrderClass[] orderList = new OrderClass[cursor.getCount()];
         int i = 0;
         if (cursor.moveToFirst()) {
@@ -140,7 +140,7 @@ public class DatabaseHandler {
 
     // get all order number and it's total price
     public OrderNumberClass[] getOrderNumber() {
-        Cursor cursor = database.rawQuery("SELECT orderNumber, SUM(count), SUM(price * count) AS totalPrice FROM `order` GROUP BY orderNumber", null);
+        Cursor cursor = database.rawQuery("SELECT orderNumber, SUM(count), SUM(price * count) AS totalPrice FROM orderRecord GROUP BY orderNumber", null);
         OrderNumberClass[] orderNumberList = new OrderNumberClass[cursor.getCount()];
         int i = 0;
         if (cursor.moveToFirst()) {

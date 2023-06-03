@@ -4,6 +4,7 @@ import static java.lang.Integer.parseInt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,6 +25,7 @@ public class CartPageActivity extends AppCompatActivity {
     private LinearLayout cart_linearLayout;
     private Nav nav;
     private DatabaseHandler databaseHandler;
+    private LinearLayout checkoutBtn;
 
 
     public CartItem createCartItem(String cartName, Integer cartPrice, Integer cartImage, Integer cartNumber) {
@@ -86,6 +88,13 @@ public class CartPageActivity extends AppCompatActivity {
 
         cart_back_button.setOnClickListener(v -> {
             onBackPressed();
+        });
+
+        checkoutBtn = findViewById(R.id.checkoutBtn);
+        checkoutBtn.setOnClickListener(v -> {
+            databaseHandler.moveAllCartToOrder();
+            Intent intent = new Intent(this, OrderHistoryActivity.class);
+            startActivity(intent);
         });
     }
 

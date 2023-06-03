@@ -24,12 +24,26 @@ public class OrderHistoryActivity extends AppCompatActivity {
         nav = findViewById(R.id.nav);
         orderList = findViewById(R.id.orderList);
 
-        OrderItem orderItem = new OrderItem(this);
-        orderItem.setOrderNumber(1);
-        orderItem.setOrderDesc(5, 100);
-        orderItem.setOrderPoint(3);
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
 
-        orderList.addView(orderItem);
+        OrderNumberClass[] orderNumberClasses = databaseHandler.getOrderNumber();
+        for (int i = 0; i < orderNumberClasses.length; i++) {
+            orderList.addView(createOrderItem(orderNumberClasses[i].getOrderNumber(), orderNumberClasses[i].getCount(), orderNumberClasses[i].getTotalPrice()));
+        }
+    }
+
+    private OrderItem createOrderItem(int number, int count, int price) {
+        OrderItem orderItem = new OrderItem(this);
+        orderItem.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+        orderItem.setOrderNumber(number);
+        orderItem.setOrderDesc(count, price);
+        orderItem.setOrderPoint(price / 10);
+
+        return orderItem;
     }
 
 }

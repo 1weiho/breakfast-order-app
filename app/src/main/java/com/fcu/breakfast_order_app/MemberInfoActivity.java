@@ -64,6 +64,11 @@ public class MemberInfoActivity extends AppCompatActivity {
             Intent intent = new Intent(MemberInfoActivity.this, ProductBrowseActivity.class);
             startActivity(intent);
         });
+
+        historyOrderButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MemberInfoActivity.this, OrderHistoryActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void fetchCartCount() {
