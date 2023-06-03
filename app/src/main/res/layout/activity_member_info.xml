@@ -60,11 +60,6 @@
                 android:textColor="@color/dark2" />
 
             <com.fcu.breakfast_order_app.ButtonWithIcon
-                android:id="@+id/currentOrderButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.fcu.breakfast_order_app.ButtonWithIcon
                 android:id="@+id/historyOrderButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
