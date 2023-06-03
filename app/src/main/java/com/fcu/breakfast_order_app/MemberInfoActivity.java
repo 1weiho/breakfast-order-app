@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 public class MemberInfoActivity extends AppCompatActivity {
+    private DatabaseHandler databaseHandler;
     private Head head;
+    private Nav nav;
 
     private UserInfoCard userInfoCard;
 
@@ -26,6 +28,8 @@ public class MemberInfoActivity extends AppCompatActivity {
         // Set head title
         head = findViewById(R.id.headTitle);
         head.setHeadTitle("會員資訊");
+
+        nav = findViewById(R.id.nav);
 
         // Set user information
         SharedPreferences sharedPref = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
@@ -60,5 +64,19 @@ public class MemberInfoActivity extends AppCompatActivity {
             Intent intent = new Intent(MemberInfoActivity.this, ProductBrowseActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void fetchCartCount() {
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCartCount();
     }
 }

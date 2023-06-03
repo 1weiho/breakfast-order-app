@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.fcu.breakfast_order_app.BackButton
+            android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="110dp"
-             />
+            android:layout_marginTop="110dp" />
 
         <com.fcu.breakfast_order_app.ProductPreview
             android:id="@+id/preview"
@@ -125,6 +125,7 @@
                 android:layout_marginRight="26dp"
                 android:background="@drawable/br_product_info"
                 android:gravity="center"
+                android:padding="6dp"
                 android:orientation="horizontal"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="2dp">
@@ -134,6 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/minus_light_icon" />
 
@@ -151,11 +153,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginRight="8dp"
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/plus_light_icon" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/addToCartBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
@@ -168,6 +172,7 @@
                 android:paddingVertical="2dp">
 
                 <ImageButton
+                    android:clickable="false"
                     android:id="@+id/imageButton3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,11 +182,13 @@
                     app:srcCompat="@drawable/shopping_cart_icon" />
 
                 <TextView
+                    android:clickable="false"
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:padding="8dp"
                     android:letterSpacing="0.3"
                     android:text="加入購物車"
                     android:textColor="@color/white"

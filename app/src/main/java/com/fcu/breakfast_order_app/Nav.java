@@ -7,10 +7,13 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Nav extends RelativeLayout {
 
     private ImageButton menuButton;
+    private TextView cartCount;
+    private ImageButton cartBtn;
 
     public Nav(Context context) {
         super(context);
@@ -32,6 +35,8 @@ public class Nav extends RelativeLayout {
         inflater.inflate(R.layout.nav, this);
 
         menuButton = findViewById(R.id.menuBtn);
+        cartBtn = findViewById(R.id.cartBtn);
+
         menuButton.setOnClickListener(v -> {
             SharedPreferences sharedPref = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
             boolean isLoggedIn = sharedPref.getBoolean("is_logged_in", false);
@@ -43,6 +48,23 @@ public class Nav extends RelativeLayout {
             }
             context.startActivity(intent);
         });
+
+        cartBtn.setOnClickListener(v -> {
+            SharedPreferences sharedPref = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+            boolean isLoggedIn = sharedPref.getBoolean("is_logged_in", false);
+            Intent intent;
+            if (isLoggedIn) {
+                intent = new Intent(context, CartPageActivity.class);
+            } else {
+                intent = new Intent(context, LoginPageActivity.class);
+            }
+            context.startActivity(intent);
+        });
+    }
+
+    public void setCartCount(int count) {
+        cartCount = findViewById(R.id.cartCount);
+        cartCount.setText(String.valueOf(count));
     }
 
 }

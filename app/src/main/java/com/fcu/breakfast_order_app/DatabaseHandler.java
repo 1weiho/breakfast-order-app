@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class DatabaseHandler {
 
     private AppCompatActivity activity;
@@ -28,6 +30,13 @@ public class DatabaseHandler {
             "phone TEXT NOT NULL, " +
             "password TEXT NOT NULL)";
 
+    public static final String CART_TABLE = "CREATE TABLE IF NOT EXISTS cart ( " +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "productName TEXT NOT NULL, " +
+            "price Integer NOT NULL, " +
+            "productImage Integer NOT NULL, " +
+            "count Integer NOT NULL)";
+
     public DatabaseHandler(AppCompatActivity activity) {
         this.activity = activity;
     }
@@ -36,13 +45,14 @@ public class DatabaseHandler {
         database = activity.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
 //        database.execSQL(CREATE_MEAL_TABLE);
         database.execSQL(USER_TABLE);
+        database.execSQL(CART_TABLE);
     }
 
-    public UserInfo login(String phone, String password) {
+    public UserInfoClass login(String phone, String password) {
         Cursor cursor = database.rawQuery("SELECT * FROM user WHERE phone=? AND password=?", new String[]{phone, password});
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
-            return new UserInfo(cursor.getString(1), cursor.getString(2));
+            return new UserInfoClass(cursor.getString(1), cursor.getString(2));
         } else {
             return null;
         }
@@ -61,23 +71,66 @@ public class DatabaseHandler {
         }
     }
 
-    public void addMeal(String name, String description, int price) {
+    public boolean addProductToCart(String productName, Integer price, Integer productImage, Integer count) {
         ContentValues values = new ContentValues();
-        values.put("name", name);
-        values.put("description", description);
+        values.put("productName", productName);
         values.put("price", price);
-        database.insert("Meals", null, values);
+        values.put("productImage", productImage);
+        values.put("count", count);
+        try {
+            database.insert("cart", null, values);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public void deleteMeal(int id) {
-        database.delete("Meals", "_id=?", new String[]{String.valueOf(id)});
+    public void removeProductFromCart(String productName) {
+        database.delete("cart", "productName=?", new String[]{productName});
     }
 
-    public Cursor getAllMeals() {
-        Cursor cursor = database.rawQuery("SELECT * FROM Meals", null);
-        Toast.makeText(activity, cursor.getCount() + " is added", Toast.LENGTH_SHORT).show();
+    public void updateProductCount(String productName, int countChange) {
+        Cursor cursor = database.rawQuery("SELECT * FROM cart WHERE productName=?", new String[]{productName});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int count = cursor.getInt(4);
+            ContentValues values = new ContentValues();
+            values.put("count", count + countChange);
+            database.update("cart", values, "productName=?", new String[]{productName});
+        }
+    }
 
-        return cursor;
+    public ArrayList<CartClass> getCartProduct() {
+        Cursor cursor = database.rawQuery("SELECT * FROM cart", null);
+        ArrayList<CartClass> cartList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                CartClass cartItem = new CartClass(
+                        cursor.getString(1),
+                        cursor.getInt(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4)
+                );
+                cartList.add(cartItem);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return cartList;
+    }
+
+
+    public int getCartCount() {
+        Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM cart", null);
+        int count = 0;
+
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return count;
     }
 
 }
