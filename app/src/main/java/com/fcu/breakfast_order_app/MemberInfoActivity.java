@@ -38,7 +38,11 @@ public class MemberInfoActivity extends AppCompatActivity {
         userInfoCard.setUserName(userName);
         userInfoCard.setUserProfileImage(R.drawable.profile_image);
         userInfoCard.setUserPhone(phone);
-        userInfoCard.setPointCount(37);
+
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+        int point = databaseHandler.calculatePoint();
+        userInfoCard.setPointCount(point);
 
         // Set buttons
         historyOrderButton = findViewById(R.id.historyOrderButton);
