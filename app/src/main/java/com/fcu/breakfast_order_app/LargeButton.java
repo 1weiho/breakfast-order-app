@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
 public class LargeButton extends LinearLayout {
     private Button largeButton;
 

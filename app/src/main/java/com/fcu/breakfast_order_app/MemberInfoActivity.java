@@ -10,7 +10,7 @@ import android.os.Bundle;
 public class MemberInfoActivity extends AppCompatActivity {
     private DatabaseHandler databaseHandler;
     private Head head;
-    private  Nav nav;
+    private Nav nav;
 
     private UserInfoCard userInfoCard;
 

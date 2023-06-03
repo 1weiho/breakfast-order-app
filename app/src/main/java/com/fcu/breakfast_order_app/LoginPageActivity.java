@@ -49,10 +49,10 @@ public class LoginPageActivity extends AppCompatActivity {
             }
         });
         navToRegBtn = findViewById(R.id.navToRegBtn);
-            navToRegBtn.setOnClickListener(v -> {
-                Intent intent = new Intent(LoginPageActivity.this, RegisterPageActivity.class);
-                startActivity(intent);
-            });
+        navToRegBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginPageActivity.this, RegisterPageActivity.class);
+            startActivity(intent);
+        });
 
     }
 }
