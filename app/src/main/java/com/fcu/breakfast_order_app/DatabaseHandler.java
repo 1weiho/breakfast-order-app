@@ -168,6 +168,16 @@ public class DatabaseHandler {
         return orderNumberList;
     }
 
+    public int calculatePoint() {
+        Cursor cursor = database.rawQuery("SELECT SUM(price * count) AS totalPrice FROM orderRecord", null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            return cursor.getInt(0) / 10;
+        } else {
+            return 0;
+        }
+    }
+
     public void removeProductFromCart(String productName) {
         database.delete("cart", "productName=?", new String[]{productName});
     }
