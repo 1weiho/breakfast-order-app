@@ -13,11 +13,17 @@ public class OrderDetailActivity extends AppCompatActivity {
     private DatabaseHandler databaseHandler;
     private LinearLayout productList;
     private TextView totalPrice;
+    private Head head;
+    private BackButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
+
+        head = findViewById(R.id.headTitle);
+        head.setHeadTitle("訂單明細");
+
         productList = findViewById(R.id.productList);
 
         Intent intent = getIntent();
@@ -34,6 +40,10 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         totalPrice = findViewById(R.id.totalPrice);
         totalPrice.setText("總計：NT" + databaseHandler.getOrderTotalPrice(orderNumber) + "，可獲得" + databaseHandler.getOrderTotalPrice(orderNumber) / 10 + "點");
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setLabel("上一步");
+        backBtn.setOnClickListener(v -> onBackPressed());
     }
 
     private OrderDetailCard createOrderDetailCard(String productName, int productPrice, int productCount) {

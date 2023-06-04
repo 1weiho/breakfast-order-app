@@ -13,6 +13,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
     private Head head;
     private Nav nav;
     private LinearLayout orderList;
+    private BackButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,10 @@ public class OrderHistoryActivity extends AppCompatActivity {
         for (int i = 0; i < orderNumberClasses.length; i++) {
             orderList.addView(createOrderItem(orderNumberClasses[i].getOrderNumber(), orderNumberClasses[i].getCount(), orderNumberClasses[i].getTotalPrice()));
         }
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setLabel("上一步");
+        backBtn.setOnClickListener(v -> onBackPressed());
     }
 
     private OrderItem createOrderItem(int number, int count, int price) {
