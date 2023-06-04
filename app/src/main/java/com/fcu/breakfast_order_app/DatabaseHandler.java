@@ -200,6 +200,27 @@ public class DatabaseHandler {
         }
     }
 
+
+
+    public PointRecordClass[] getPointRecord() {
+        Cursor cursor = database.rawQuery("SELECT SUM(price * count) AS totalPrice, orderNumber FROM orderRecord GROUP BY orderNumber", null);
+        PointRecordClass[] pointRecordList = new PointRecordClass[cursor.getCount()];
+        int i = 0;
+        if (cursor.moveToFirst()) {
+            do {
+                PointRecordClass pointRecordItem = new PointRecordClass(
+                        cursor.getInt(0) / 10,
+                        cursor.getInt(1)
+                );
+                pointRecordList[i] = pointRecordItem;
+                i++;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return pointRecordList;
+    }
+
+
     public void removeProductFromCart(String productName) {
         database.delete("cart", "productName=?", new String[]{productName});
     }

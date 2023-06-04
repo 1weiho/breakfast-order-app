@@ -80,6 +80,11 @@ public class MemberInfoActivity extends AppCompatActivity {
             Intent intent = new Intent(MemberInfoActivity.this, ResetPasswordActivity.class);
             startActivity(intent);
         });
+
+        historyPointButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MemberInfoActivity.this, PointHistoryActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void fetchCartCount() {
