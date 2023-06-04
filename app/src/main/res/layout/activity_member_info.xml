@@ -26,30 +26,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nav" />
 
+    <com.fcu.breakfast_order_app.BackButton
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="46dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headTitle" />
+
     <com.fcu.breakfast_order_app.UserInfoCard
         android:id="@+id/userInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headTitle" />
+        app:layout_constraintTop_toBottomOf="@id/backBtn" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/userInfo"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userInfo">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:orientation="vertical"
-            android:paddingBottom="20dp"
-            android:paddingHorizontal="52dp">
+            android:paddingHorizontal="52dp"
+            android:paddingBottom="20dp">
 
             <TextView
                 android:layout_width="match_parent"

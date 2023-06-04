@@ -18,6 +18,7 @@ public class MemberInfoActivity extends AppCompatActivity {
     private ButtonWithIcon historyPointButton;
     private ButtonWithIcon resetPasswordButton;
     private ButtonWithIcon logoutButton;
+    private BackButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,10 @@ public class MemberInfoActivity extends AppCompatActivity {
             Intent intent = new Intent(MemberInfoActivity.this, OrderHistoryActivity.class);
             startActivity(intent);
         });
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setLabel("繼續點餐");
+        backBtn.setOnClickListener(v -> onBackPressed());
     }
 
     private void fetchCartCount() {
