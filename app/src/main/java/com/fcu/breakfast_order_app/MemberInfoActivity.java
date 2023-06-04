@@ -75,6 +75,11 @@ public class MemberInfoActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         backBtn.setLabel("繼續點餐");
         backBtn.setOnClickListener(v -> onBackPressed());
+
+        resetPasswordButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MemberInfoActivity.this, ResetPasswordActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void fetchCartCount() {

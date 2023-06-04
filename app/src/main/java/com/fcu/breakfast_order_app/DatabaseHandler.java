@@ -73,6 +73,28 @@ public class DatabaseHandler {
         }
     }
 
+    public boolean resetPassword(String userName, String oldPassword, String newPassword) {
+        Cursor cursor = database.rawQuery("SELECT * FROM user WHERE userName=?", new String[]{userName});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            String dbOldPassword = cursor.getString(3);
+            if (!dbOldPassword.equals(oldPassword)) {
+                return false;
+            }
+
+            ContentValues values = new ContentValues();
+            values.put("password", newPassword);
+            try {
+                database.update("user", values, "userName=?", new String[]{userName});
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
     public boolean addProductToCart(String productName, Integer price, Integer productImage, Integer count) {
         ContentValues values = new ContentValues();
         values.put("productName", productName);
@@ -216,7 +238,6 @@ public class DatabaseHandler {
         cursor.close();
         return cartList;
     }
-
 
     public int getCartCount() {
         Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM cart", null);
