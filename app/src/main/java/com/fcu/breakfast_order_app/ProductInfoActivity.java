@@ -4,7 +4,9 @@ import static java.lang.Integer.parseInt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -109,11 +111,20 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         addToCartBtn = findViewById(R.id.addToCartBtn);
         addToCartBtn.setOnClickListener(v -> {
-            if (databaseHandler.addProductToCart(productName, productPrice, productImage, parseInt((String) product_info_number.getText()))) {
-                Toast.makeText(ProductInfoActivity.this, "加入購物車成功", Toast.LENGTH_SHORT).show();
-                onBackPressed();
+            SharedPreferences sharedPref = this.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+            boolean isLoggedIn = sharedPref.getBoolean("is_logged_in", false);
+            Intent loginIntent;
+            if (!isLoggedIn) {
+                loginIntent = new Intent(this, LoginPageActivity.class);
+                Toast.makeText(ProductInfoActivity.this, "請先登入", Toast.LENGTH_SHORT).show();
+                this.startActivity(loginIntent);
             } else {
-                Toast.makeText(ProductInfoActivity.this, "加入購物車失敗", Toast.LENGTH_SHORT).show();
+                if (databaseHandler.addProductToCart(productName, productPrice, productImage, parseInt((String) product_info_number.getText()))) {
+                    Toast.makeText(ProductInfoActivity.this, "加入購物車成功", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                } else {
+                    Toast.makeText(ProductInfoActivity.this, "加入購物車失敗", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
