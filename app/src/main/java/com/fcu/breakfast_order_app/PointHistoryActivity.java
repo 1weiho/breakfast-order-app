@@ -19,7 +19,7 @@ public class PointHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_point_history);
 
         head = findViewById(R.id.headTitle);
-        head.setHeadTitle("歷史訂單");
+        head.setHeadTitle("點數紀錄");
 
         nav = findViewById(R.id.nav);
         orderList = findViewById(R.id.pointList);
@@ -46,5 +46,19 @@ public class PointHistoryActivity extends AppCompatActivity {
         pointItem.setOrderNumber(orderNumber);
         pointItem.setOrderPoint(pointCount);
         return pointItem;
+    }
+
+    private void fetchCartCount() {
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCartCount();
     }
 }

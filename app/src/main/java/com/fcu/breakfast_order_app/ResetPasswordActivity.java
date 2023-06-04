@@ -16,11 +16,16 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private EditText newPassword;
     private EditText newPasswordConfirm;
     private Button submitButton;
+    private BackButton backBtn;
+    private DatabaseHandler databaseHandler;
+    private Nav nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+
+        nav = findViewById(R.id.nav);
 
         headTitle = findViewById(R.id.headTitle);
         oldPassword = findViewById(R.id.oldPassword);
@@ -36,6 +41,24 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setLabel("上一步");
+        backBtn.setOnClickListener(v -> onBackPressed());
+    }
+
+    private void fetchCartCount() {
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCartCount();
     }
 
     private boolean handleResetPassword(String oldPassword, String newPassword, String newPasswordConfirm) {

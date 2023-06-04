@@ -57,4 +57,18 @@ public class OrderHistoryActivity extends AppCompatActivity {
         return orderItem;
     }
 
+    private void fetchCartCount() {
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCartCount();
+    }
+
 }

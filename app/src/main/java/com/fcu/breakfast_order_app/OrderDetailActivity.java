@@ -15,12 +15,14 @@ public class OrderDetailActivity extends AppCompatActivity {
     private TextView totalPrice;
     private Head head;
     private BackButton backBtn;
+    private  Nav nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
 
+        nav = findViewById(R.id.nav);
         head = findViewById(R.id.headTitle);
         head.setHeadTitle("訂單明細");
 
@@ -56,5 +58,19 @@ public class OrderDetailActivity extends AppCompatActivity {
         orderDetailCard.setProductPrice(productPrice);
 
         return orderDetailCard;
+    }
+
+    private void fetchCartCount() {
+        databaseHandler = new DatabaseHandler(this);
+        databaseHandler.open();
+
+        int productCount = databaseHandler.getCartCount();
+        nav.setCartCount(productCount);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCartCount();
     }
 }
